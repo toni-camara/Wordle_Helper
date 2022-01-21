@@ -16,14 +16,16 @@ class MainActivity : AppCompatActivity() {
 
 fun main(args: Array<String>) {
     val lista = arrayOf("cebar", "Cobra", "Robot", "Morir")
-    var usosLetra = IntArray(26)
+    val usosLetra = hashMapOf<Char, Int>()
+
 
     println("La lista contiene ${lista.size} palabras y son:")
 
     for(word in lista) {
         var minuscula: String = word.lowercase()
-        for(char in minuscula){
-                usosLetra[(char.code -97)]++
+        for(letra in minuscula){
+                var cantidad = usosLetra.get(letra) ?: 0  // ?: 0 es proteccion anti Null
+                usosLetra.put(letra, cantidad + 1)
         }
 
         println("$word")
@@ -31,11 +33,12 @@ fun main(args: Array<String>) {
 
     println("Los usos de cada letra del alfabeto en la lista son los siguientes:")
 
-    for(i in 0 until usosLetra.size){
-        if (usosLetra[i] != 0) {
-            println("${(i + 97).toChar()}: usada ${usosLetra[i]} veces")
+    val usosLetraOrdenado = usosLetra.entries.sortedByDescending { it.value }
+
+
+    for(entry in usosLetraOrdenado){
+        println("${entry.key}: usada ${entry.value} veces")
         }
-    }
 
 
 
