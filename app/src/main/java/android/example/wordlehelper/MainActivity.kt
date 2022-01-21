@@ -5,6 +5,7 @@ import android.os.Bundle
 import java.io.File
 import java.io.BufferedReader
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,17 +16,24 @@ class MainActivity : AppCompatActivity() {
 }
 
 fun main(args: Array<String>) {
-    val lista = arrayOf("cebar", "Cobra", "Robot", "Morir")
-    val usosLetra = hashMapOf<Char, Int>()
+    val palabras = mutableListOf("cebar", "Cobra", "Robot", "Morir", "riñon")
+
+    for (entry in letrasMasUsadas(palabras)) {
+        println("${entry.key}: usada ${entry.value} veces")
+    }
+}
+
+
+fun letrasMasUsadas(lista: List<String>): Map<Char, Int> {
+
+    val usosLetra = mutableMapOf<Char, Int>()
 
 
     println("La lista contiene ${lista.size} palabras y son:")
 
-    for(word in lista) {
-        var minuscula: String = word.lowercase()
-        for(letra in minuscula){
-                var cantidad = usosLetra.get(letra) ?: 0  // ?: 0 es proteccion anti Null
-                usosLetra.put(letra, cantidad + 1)
+    for (word in lista) {
+            for (letra in word.lowercase()) {
+            usosLetra[letra] = (usosLetra[letra] ?: 0) + 1 // ?: 0 es proteccion anti Null
         }
 
         println("$word")
@@ -33,14 +41,8 @@ fun main(args: Array<String>) {
 
     println("Los usos de cada letra del alfabeto en la lista son los siguientes:")
 
-    val usosLetraOrdenado = usosLetra.entries.sortedByDescending { it.value }
-
-
-    for(entry in usosLetraOrdenado){
-        println("${entry.key}: usada ${entry.value} veces")
-        }
-
+    val usosLetraOrdenado = usosLetra.entries.sortedByDescending { it.value }.associate { it.toPair() }
+    return usosLetraOrdenado
 
 
 }
-
