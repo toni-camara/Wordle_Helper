@@ -21,8 +21,42 @@ fun main(args: Array<String>) {
     for (entry in letrasMasUsadas(palabras)) {
         println("${entry.key}: usada ${entry.value} veces")
     }
+
+    println("Please input character: ")
+    var charInput = readLine()!!
+
+
+    for (entry in buscarLetra(palabras, charInput)) {
+        println("${entry.key}")
+    }
+
+
+
+
 }
 
+fun buscarLetra(lista: List<String>, input: String): Map<String, Int> {
+
+    val letraUsada = mutableMapOf<String, Int>()
+
+
+    for (word in lista) {
+        for (letra in word.lowercase()) {
+            if (input == letra.toString()) {
+                letraUsada[word] = (letraUsada[word] ?: 0) + 1 // ?: 0 es proteccion anti Null
+            }
+
+        }
+
+    }
+
+    println("Your input was: $input . looking for words containing $input...\n")
+
+    val usosLetraOrdenado = letraUsada.entries.sortedByDescending { it.value }.associate { it.toPair() }
+    return usosLetraOrdenado
+
+
+}
 
 fun letrasMasUsadas(lista: List<String>): Map<Char, Int> {
 
@@ -46,3 +80,4 @@ fun letrasMasUsadas(lista: List<String>): Map<Char, Int> {
 
 
 }
+
