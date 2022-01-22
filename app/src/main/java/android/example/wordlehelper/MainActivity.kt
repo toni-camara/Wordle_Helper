@@ -63,19 +63,15 @@ fun readInput(): String{
 
 /** This method takes a Character input and searches the list for words containing that input */
 fun searchForInput(wordList: List<String>, input: String) {
-    val wordsWithInput = mutableMapOf<String, Int>()
+    val wordsWithInput = mutableListOf<String>()
+    println("Your input was: $input . looking for words containing $input...\n")
 
     for (word in wordList) {
         for (letter in word.lowercase()) {
             if (input == letter.toString()) {
-                wordsWithInput[word] = (wordsWithInput[word] ?: 0) + 1 // ?: 0 is anti-Null protection
+                wordsWithInput.add(word)
             }
         }
     }
-
-    println("Your input was: $input . looking for words containing $input...\n")
-
-    for (entry in wordsWithInput) {
-        println(entry.key)
-    }
+    wordsWithInput.forEach{println(it)}
 }
