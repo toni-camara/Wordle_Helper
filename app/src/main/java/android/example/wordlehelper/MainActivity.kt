@@ -2,6 +2,7 @@ package android.example.wordlehelper
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,10 @@ class MainActivity : AppCompatActivity() {
 }
 
 fun main() {
-    val wordList = mutableListOf("cebar", "Cobra", "Robot", "Morir", "riñon")
+    val file = File("app\\src\\main\\assets\\example.txt")
+
+    val wordList = mutableListOf<String>()
+    file.forEachLine { wordList.add(it) }  // Store each line from the file into an element of the List
 
     for (entry in mostUsedWords(wordList)) {
         println("${entry.key}: usada ${entry.value} veces")
