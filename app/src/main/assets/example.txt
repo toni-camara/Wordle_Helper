@@ -1,2 +1,10 @@
+comer
+david
+julia
+arcos
+bolsa
+mania
+resta
+jaleo
 texto
 Robot
