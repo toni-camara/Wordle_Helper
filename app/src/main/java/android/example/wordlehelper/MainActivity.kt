@@ -13,14 +13,16 @@ class MainActivity : AppCompatActivity() {
 }
 
 fun main() {
-    val file = File("app\\src\\main\\assets\\example.txt")
-
     val wordList = mutableListOf<String>()
-    file.forEachLine { wordList.add(it) }  // Store each line from the file into an element of the List
 
-    for (entry in mostUsedWords(wordList)) {
+    listFromFile(wordList)
+
+    for (entry in mostUsedLetters(wordList)) {
         println("${entry.key}: usada ${entry.value} veces")
     }
+
+    wordList.sort()
+    wordList.forEach{println(it)}
 
     println("Please input character: ") // User Input
     val charInput = readLine()!!
@@ -30,6 +32,11 @@ fun main() {
     }
 }
 
+fun listFromFile(wordList: MutableList<String>){
+    val file = File("app\\src\\main\\assets\\example.txt")
+    file.forEachLine { wordList.add(it) }  // Store each line from the file into an element of the List
+}
+
 /** This method takes a Character input and searches the list for words containing that input */
 fun searchForInput(wordList: List<String>, input: String): Map<String, Int> {
     val letterUses = mutableMapOf<String, Int>()
@@ -37,7 +44,7 @@ fun searchForInput(wordList: List<String>, input: String): Map<String, Int> {
     for (word in wordList) {
         for (letter in word.lowercase()) {
             if (input == letter.toString()) {
-                letterUses[word] = (letterUses[word] ?: 0) + 1 // ?: 0 es proteccion anti Null
+                letterUses[word] = (letterUses[word] ?: 0) + 1 // ?: 0 is anti-Null protection
             }
         }
     }
@@ -47,7 +54,7 @@ fun searchForInput(wordList: List<String>, input: String): Map<String, Int> {
 }
 
 /** This method takes the word list and returns the most used letters, sorted by descending order*/
-fun mostUsedWords(wordList: List<String>): Map<Char, Int> {
+fun mostUsedLetters(wordList: List<String>): Map<Char, Int> {
     val letterUses = mutableMapOf<Char, Int>()
     println("La lista contiene ${wordList.size} palabras y son:")
 
