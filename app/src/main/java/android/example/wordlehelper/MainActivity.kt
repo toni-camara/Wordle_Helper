@@ -22,12 +22,6 @@ fun main() {
     searchForInput(wordList,letterInput)
 }
 
-/** This method asks the user for a character input*/
-fun readInput(): String{
-    println("Please input character: ") // User Input
-    return readLine()!!
-}
-
 /** This method takes a list of words from a file and stores them into a list */
 fun readWordsFromFile(wordList: MutableList<String>){
     val file = File("app\\src\\main\\assets\\example.txt")
@@ -59,6 +53,12 @@ fun mostUsedLetters(wordList: List<String>) {
     for (entry in letterFrequency) {
         println("${entry.key}: usada ${entry.value} veces")
     }
+}
+
+/** This method asks the user for a character input*/
+fun readInput(): String{
+    println("Please input character: ") // User Input
+    return readLine()!!
 }
 
 /** This method takes a Character input and searches the list for words containing that input */
