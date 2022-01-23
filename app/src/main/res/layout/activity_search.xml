@@ -56,95 +56,28 @@
         android:layout_marginTop="20sp"
         android:orientation="horizontal">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/verticalWordsLeft"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="20dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/word1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginEnd="10sp"
-                android:layout_marginBottom="10sp"
-                tools:text="Word 1"
+        </LinearLayout>
 
-                />
-
-            <TextView
-                android:id="@+id/word2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/word1"
-                android:layout_marginStart="10sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginEnd="10sp"
-                android:layout_marginBottom="10sp"
-                tools:text="Word 2"/>
-
-            <TextView
-                android:id="@+id/word3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/word2"
-                android:layout_margin="10sp"
-                tools:text="Word 3"/>
-
-            <TextView
-                android:id="@+id/word4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/word3"
-                android:layout_margin="10sp"
-                tools:text="Word 4"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/verticalWordsRight"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
             android:layout_toRightOf="@+id/verticalWordsLeft"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/word5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                tools:text="Word 5"/>
 
-            <TextView
-                android:id="@+id/word6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/word5"
-                android:layout_margin="10sp"
-                tools:text="Word 6"/>
-
-            <TextView
-                android:id="@+id/word7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/word6"
-                android:layout_margin="10sp"
-                tools:text="Word 7"/>
-
-            <TextView
-                android:id="@+id/word8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/word7"
-                android:layout_margin="10sp"
-                tools:text="Word 8"/>
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
