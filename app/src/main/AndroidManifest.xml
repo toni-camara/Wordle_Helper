@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WordleHelper">
         <activity
+            android:name=".code"
+            android:exported="false" />
+        <activity
+            android:name=".search"
+            android:exported="false" />
+        <activity
+            android:name=".game"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

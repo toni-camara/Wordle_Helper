@@ -1,6 +1,8 @@
 package android.example.wordlehelper
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 
@@ -9,6 +11,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val playButton = findViewById<Button>(R.id.playBtn)
+        playButton.setOnClickListener {
+            val intent = Intent(this, game::class.java)
+            startActivity(intent)
+        }
+
+        val searchButton = findViewById<Button>(R.id.searchBtn)
+        searchButton.setOnClickListener {
+            val intent = Intent(this, search::class.java)
+            startActivity(intent)
+        }
+
+        val codeButton = findViewById<Button>(R.id.codeBtn)
+        codeButton.setOnClickListener {
+            val intent = Intent(this, code::class.java)
+            startActivity(intent)
+        }
     }
 }
 
