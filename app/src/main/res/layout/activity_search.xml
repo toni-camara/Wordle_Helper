@@ -60,10 +60,12 @@
             android:id="@+id/verticalWordsLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp">
+
 
         </LinearLayout>
 
@@ -71,10 +73,11 @@
             android:id="@+id/verticalWordsRight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
             android:layout_toRightOf="@+id/verticalWordsLeft"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp">
 
 
         </LinearLayout>
