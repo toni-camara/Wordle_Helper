@@ -11,12 +11,13 @@ class search : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         var searchIsDone: Boolean = false
         var filteredList: List<String> = listOf()
-        val wordList: List<String> = myMethods().readWordsFromFile(this@search)
+        var wordList: MutableList<String> = mutableListOf()
 
         /** Click on SHOW LIST Button*/
         val showListButton = findViewById<Button>(R.id.showListBtn)
         showListButton.setOnClickListener {
-
+            wordList.clear()
+            wordList = myMethods().readWordsFromFile(this@search).toMutableList()
             myMethods().drawWordList(wordList, this)
         }
 
@@ -25,7 +26,8 @@ class search : AppCompatActivity() {
         filterButton.setOnClickListener {
 
             if (wordList.isNotEmpty()) { // Verifies that the list has been obtained from the file
-                var input: String = "r" //Placeholder Search Criteria
+                var input: List<Char?> =
+                    listOf('r', null, 'm', null, null) //Placeholder Search Criteria
 
                 if (!searchIsDone) filteredList = myMethods().searchForInput(wordList, input)
                 myMethods().drawWordList(filteredList, this)

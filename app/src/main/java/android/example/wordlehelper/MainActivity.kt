@@ -39,18 +39,18 @@ fun main() {
     mostUsedLetters(wordList)
 
     val letterInput = readInput()
-    searchForInput(wordList,letterInput)
+    searchForInput(wordList, letterInput)
 }
 
 /** This method takes a list of words from a file and stores them into a list */
-fun readWordsFromFile(wordList: MutableList<String>){
+fun readWordsFromFile(wordList: MutableList<String>) {
     val file = File("app\\src\\main\\assets\\example.txt")
     file.forEachLine { wordList.add(it) }  // Store each line from the file into an element of the List
     wordList.sort()
 }
 
 /** This method takes a list of words and prints them */
-fun printWordsFromList(wordList: MutableList<String>){
+fun printWordsFromList(wordList: MutableList<String>) {
     println("La lista contiene ${wordList.size} palabras y son:")
     wordList.forEach { println(it) }
 }
@@ -67,7 +67,8 @@ fun mostUsedLetters(wordList: List<String>) {
 
     println("Los usos de cada letra del alfabeto en la lista son los siguientes:")
 
-    val letterFrequency = letterUses.entries.sortedByDescending { it.value }.associate { it.toPair() }
+    val letterFrequency =
+        letterUses.entries.sortedByDescending { it.value }.associate { it.toPair() }
     letterUses.toSortedMap()
 
     for (entry in letterFrequency) {
@@ -76,7 +77,7 @@ fun mostUsedLetters(wordList: List<String>) {
 }
 
 /** This method asks the user for a character input*/
-fun readInput(): String{
+fun readInput(): String {
     println("Please input character: ") // User Input
     return readLine()!!
 }
@@ -93,5 +94,5 @@ fun searchForInput(wordList: List<String>, input: String) {
             }
         }
     }
-    wordsWithInput.forEach{println(it)}
+    wordsWithInput.forEach { println(it) }
 }

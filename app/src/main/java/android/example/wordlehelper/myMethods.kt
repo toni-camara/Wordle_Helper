@@ -47,13 +47,11 @@ class myMethods {
             val size: Int = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer).toString()
-
             string = String(buffer)
 
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
 
         val list = string.split("\n")
         return list.sorted()
@@ -61,21 +59,33 @@ class myMethods {
     }
 
     /** This method takes a Character input and searches the list for words containing that input */
-    fun searchForInput(wordList: List<String>, input: String): List<String> {
-        val wordsWithInput = mutableListOf<String>()
-        println("Your input was: $input . looking for words containing $input...\n")
+    fun searchForInput(wordList: MutableList<String>, input: List<Char?>): List<String> {
+        var updatedList = wordList.toMutableList()
 
         for (word in wordList) {
-            for (letter in word.lowercase()) {
-                if (input == letter.toString()) {
-                    wordsWithInput.add(word)
+            word.lowercase().forEachIndexed() { index, letter ->
+                if (input[index] != null) {
+                    if (letter == input[index]) {
+                        updatedList = myMethods().borrarResto(updatedList, input[index], index).toMutableList()
+                    }
                 }
             }
         }
-        wordsWithInput.forEach { println(it) }
-        return wordsWithInput
+        wordList.forEach { println(it) }
+        return updatedList
     }
 
+    /** This method removes from the list every word that doesn't fit the Green user inputs*/
+    fun borrarResto(wordList: MutableList<String>, inputLetter: Char?, posicion: Int): MutableList<String> {
+        val updatedList = wordList.toMutableList()
+        for (word in wordList) {
+            word.lowercase().forEachIndexed() { index, letter ->
+                if (letter != inputLetter && posicion == index)
+                    updatedList.remove(word)
+            }
+        }
+        return updatedList.sorted().toMutableList()
+    }
 
 }
 

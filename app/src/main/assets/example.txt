@@ -6,3 +6,9 @@ bolsa
 mania
 resta
 jaleo
+resto
+pinza
+patan
+rambo
+marco
+lince
