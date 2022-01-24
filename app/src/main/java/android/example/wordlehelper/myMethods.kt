@@ -66,7 +66,9 @@ class myMethods {
             word.lowercase().forEachIndexed() { index, letter ->
                 if (input[index] != null) {
                     if (letter == input[index]) {
-                        updatedList = myMethods().borrarResto(updatedList, input[index], index).toMutableList()
+                        updatedList =
+                            myMethods().deleteRestOfWords(updatedList, input[index], index)
+                                .toMutableList()
                     }
                 }
             }
@@ -76,7 +78,11 @@ class myMethods {
     }
 
     /** This method removes from the list every word that doesn't fit the Green user inputs*/
-    fun borrarResto(wordList: MutableList<String>, inputLetter: Char?, posicion: Int): MutableList<String> {
+    fun deleteRestOfWords(
+        wordList: MutableList<String>,
+        inputLetter: Char?,
+        posicion: Int
+    ): MutableList<String> {
         val updatedList = wordList.toMutableList()
         for (word in wordList) {
             word.lowercase().forEachIndexed() { index, letter ->
