@@ -1,21 +1,43 @@
 package android.example.wordlehelper
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import java.io.File
 import java.io.IOException
-import android.widget.RelativeLayout
-import androidx.core.view.marginTop
 
 
 class myMethods {
+
+    /** This method draws the list of words */
+    fun drawWordList(filteredList: List<String>, Activity: Activity) {
+        Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).removeAllViews()
+        Activity.findViewById<LinearLayout>(R.id.verticalWordsRight).removeAllViews()
+
+        var lineCounter = 1
+        for (word in filteredList) {
+
+            // Word list settings
+            val vistaNueva = TextView(Activity)
+            vistaNueva.textSize = 20f
+            vistaNueva.text = word.uppercase()
+            vistaNueva.setTextColor(Color.parseColor("#6746c3"))
+            val typeface =
+                Typeface.SANS_SERIF//createFromAsset(applicationContext.assets, "sans-serif-light")
+            vistaNueva.setTypeface(typeface)
+
+            //Word list printing
+            if (lineCounter <= 4) {
+                Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).addView(vistaNueva)
+            } else if (lineCounter <= 8) {
+                Activity.findViewById<LinearLayout>(R.id.verticalWordsRight).addView(vistaNueva)
+            }
+            lineCounter++
+        }
+
+    }
 
     /** This method takes a list of words from a file and stores them into a list */
     fun readWordsFromFile(context: Context): List<String> {
