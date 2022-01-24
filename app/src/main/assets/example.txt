@@ -6,5 +6,9 @@ bolsa
 mania
 resta
 jaleo
-texto
-Robot
+resto
+pinza
+patan
+rambo
+marco
+lince

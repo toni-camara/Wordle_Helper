@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_foreground"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/searchHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-light"
+        android:text="WORDLE"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchHeader"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="20sp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/showListBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:background="#6746c3"
+            android:text="List of Words"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/filterBtn"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#1de9b6"
+            android:text="Filter" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonsLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input1"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input2"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input3"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input4"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input5"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/horizontalWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputLayout"
+        android:layout_marginTop="20sp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/verticalWordsLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/verticalWordsRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/verticalWordsLeft"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp">
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
