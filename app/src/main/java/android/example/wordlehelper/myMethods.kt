@@ -11,14 +11,18 @@ import java.io.IOException
 
 class myMethods {
 
+    /** returns 'True' if the value is odd, and 'False' if the value is even*/
+    fun isOdd(value: Int): Boolean {
+        return value and 0x01 != 0
+    }
+
     /** This method draws the list of words */
     fun drawWordList(filteredList: List<String>, Activity: Activity) {
         Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).removeAllViews()
+        Activity.findViewById<LinearLayout>(R.id.verticalWordsCenter).removeAllViews()
         Activity.findViewById<LinearLayout>(R.id.verticalWordsRight).removeAllViews()
 
-        var lineCounter = 1
-        for (word in filteredList) {
-
+        filteredList.forEachIndexed() { index, word ->
             // Word list settings
             val vistaNueva = TextView(Activity)
             vistaNueva.textSize = 20f
@@ -29,15 +33,15 @@ class myMethods {
             vistaNueva.setTypeface(typeface)
 
             //Word list printing
-            if (lineCounter <= 4) {
-                Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).addView(vistaNueva)
-            } else if (lineCounter <= 8) {
+            if ((index + 1).mod(3) < 0.4) {
                 Activity.findViewById<LinearLayout>(R.id.verticalWordsRight).addView(vistaNueva)
-            }
-            lineCounter++
-        }
+            } else if ((index + 1).mod(3) > 0.4 && index.mod(3) < 1) {
+                Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).addView(vistaNueva)
+            } else Activity.findViewById<LinearLayout>(R.id.verticalWordsCenter).addView(vistaNueva)
 
+        }
     }
+
 
     /** This method takes a list of words from a file and stores them into a list */
     fun readWordsFromFile(context: Context): List<String> {

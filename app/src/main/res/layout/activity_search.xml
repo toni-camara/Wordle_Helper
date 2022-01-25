@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             android:background="#6746c3"
-            android:text="List of Words"
+            android:text="Reset List"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -64,9 +64,13 @@
             android:layout_height="35dp"
             android:layout_marginHorizontal="5dp"
             android:background="@color/design_default_color_primary"
+
             android:maxLength="1"
             android:textAlignment="center"
+            android:inputType="textCapCharacters"
+            android:importantForAutofill="no"
             android:textAllCaps="true"
+            android:cursorVisible="false"
             android:textColor="@color/white"
             tools:text="-" />
 
@@ -74,9 +78,12 @@
             android:id="@+id/input2"
             android:layout_width="40dp"
             android:layout_height="35dp"
+            android:inputType="textCapCharacters"
+            android:importantForAutofill="no"
             android:layout_marginHorizontal="5dp"
             android:background="@color/design_default_color_primary"
             android:maxLength="1"
+            android:cursorVisible="false"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -86,6 +93,9 @@
             android:id="@+id/input3"
             android:layout_width="40dp"
             android:layout_height="35dp"
+            android:importantForAutofill="no"
+            android:cursorVisible="false"
+            android:inputType="textCapCharacters"
             android:layout_marginHorizontal="5dp"
             android:background="@color/design_default_color_primary"
             android:maxLength="1"
@@ -97,8 +107,11 @@
         <EditText
             android:id="@+id/input4"
             android:layout_width="40dp"
+            android:importantForAutofill="no"
             android:layout_height="35dp"
             android:layout_marginHorizontal="5dp"
+            android:inputType="textCapCharacters"
+            android:cursorVisible="false"
             android:background="@color/design_default_color_primary"
             android:maxLength="1"
             android:textAlignment="center"
@@ -110,7 +123,10 @@
             android:id="@+id/input5"
             android:layout_width="40dp"
             android:layout_height="35dp"
+            android:importantForAutofill="no"
             android:layout_marginHorizontal="5dp"
+            android:inputType="textCapCharacters"
+            android:cursorVisible="false"
             android:background="@color/design_default_color_primary"
             android:maxLength="1"
             android:textAlignment="center"
@@ -120,41 +136,54 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/horizontalWords"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/inputLayout"
         android:layout_marginTop="20sp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/verticalWordsLeft"
-            android:layout_width="0dp"
+            android:id="@+id/horizontalWords"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingHorizontal="40dp">
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/verticalWordsLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/verticalWordsCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/verticalWordsLeft"
+                android:layout_marginHorizontal="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/verticalWordsRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/verticalWordsCenter"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/verticalWordsRight"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/verticalWordsLeft"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingHorizontal="40dp">
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
