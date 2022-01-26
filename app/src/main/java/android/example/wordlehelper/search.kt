@@ -117,7 +117,7 @@ class search : AppCompatActivity() {
             if (input7.text.toString().equals("")) {
                 input7Text = null
             } else {
-                input7Text = input5.text.single()
+                input7Text = input7.text.single()
             }
 
             val input8 = findViewById<View>(R.id.input8) as EditText

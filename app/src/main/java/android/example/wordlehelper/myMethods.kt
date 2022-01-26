@@ -78,7 +78,7 @@ class myMethods {
                     }
                     // Si la palabra contiene amarillas
                     else if(comparacion == android.example.wordlehelper.input.letterColor.YELLOW && input[inputIndex].letter == letter){
-                        updatedList = deleteRestOfWords(updatedList,letter,index)
+                        updatedList = deleteRestOfWordsYellow(updatedList,letter,index)
                     }
                     // Si la palabra contiene negras
                     else if(comparacion == android.example.wordlehelper.input.letterColor.BLACK && input[inputIndex].letter == letter)
@@ -103,6 +103,26 @@ class myMethods {
             word.lowercase().forEachIndexed() { index, letter ->
                 if (letter != inputLetter && posicion == index)
                     updatedList.remove(word)
+            }
+        }
+        return updatedList.sorted().toMutableList()
+    }
+
+    /** This method removes from the list every word that doesn't fit the Yellow user inputs*/
+    fun deleteRestOfWordsYellow(
+        wordList: MutableList<String>,
+        inputLetter: Char,
+        posicion: Int
+    ): MutableList<String> {
+        val updatedList = wordList.toMutableList()
+        for (word in wordList) {
+            var letterIsInWord = false
+            word.lowercase().forEachIndexed() { index, letter ->
+                if (letter == inputLetter) letterIsInWord = true
+            }
+            if (!letterIsInWord) {
+                updatedList.remove(word)
+                letterIsInWord = false
             }
         }
         return updatedList.sorted().toMutableList()
