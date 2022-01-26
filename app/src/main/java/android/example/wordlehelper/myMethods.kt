@@ -63,18 +63,29 @@ class myMethods {
     }
 
     /** This method takes a Character input and searches the list for words containing that input */
-    fun searchForInput(wordList: MutableList<String>, input: List<Char?>): List<String> {
+    fun searchForInput(wordList: MutableList<String>, input: List<input>): List<String> {
         var updatedList = wordList.toMutableList()
 
         for (word in wordList) {
             word.lowercase().forEachIndexed() { index, letter ->
-                if (input[index] != null) {
-                    if (letter == input[index]) {
-                        updatedList =
-                            myMethods().deleteRestOfWords(updatedList, input[index], index)
-                                .toMutableList()
+                input.forEachIndexed(){inputIndex,inputLetter ->
+                    // Si la letra que toca corresponde a una verde en el input
+                    val comparacion = input[inputIndex].color
+                    // MAPAS: input.get busca el color (value) de LETTER (key) en mi mapa de input
+                    // Si no existe LETTER en mi input, devuelve null
+                    if (comparacion == android.example.wordlehelper.input.letterColor.GREEN && index == inputIndex && input[inputIndex].letter == letter){
+                        updatedList = deleteRestOfWords(updatedList,letter,index)
                     }
+                    // Si la palabra contiene amarillas
+                    else if(comparacion == android.example.wordlehelper.input.letterColor.YELLOW && input[inputIndex].letter == letter){
+                        updatedList = deleteRestOfWords(updatedList,letter,index)
+                    }
+                    // Si la palabra contiene negras
+                    else if(comparacion == android.example.wordlehelper.input.letterColor.BLACK && input[inputIndex].letter == letter)
+                        updatedList.remove(word)
                 }
+
+
             }
         }
         wordList.forEach { println(it) }
@@ -84,7 +95,7 @@ class myMethods {
     /** This method removes from the list every word that doesn't fit the Green user inputs*/
     fun deleteRestOfWords(
         wordList: MutableList<String>,
-        inputLetter: Char?,
+        inputLetter: Char,
         posicion: Int
     ): MutableList<String> {
         val updatedList = wordList.toMutableList()
@@ -99,6 +110,8 @@ class myMethods {
 
 }
 
-enum class letterColor{
-    GREEN, YELLOW, BLACK, GREY
+class input(val letter:Char?, val color: letterColor) {
+    enum class letterColor {
+        GREEN, YELLOW, BLACK, GREY
+    }
 }

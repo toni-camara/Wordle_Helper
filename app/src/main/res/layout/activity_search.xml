@@ -50,7 +50,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/inputLayout"
+        android:id="@+id/inputLayoutGreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonsLayout"
@@ -136,10 +136,184 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/inputLayoutYellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputLayoutGreen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input6"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:inputType="textCapCharacters"
+            android:importantForAutofill="no"
+            android:textAllCaps="true"
+            android:cursorVisible="false"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input7"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:inputType="textCapCharacters"
+            android:importantForAutofill="no"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input8"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:importantForAutofill="no"
+            android:cursorVisible="false"
+            android:inputType="textCapCharacters"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input9"
+            android:layout_width="40dp"
+            android:importantForAutofill="no"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:inputType="textCapCharacters"
+            android:cursorVisible="false"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input10"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:importantForAutofill="no"
+            android:layout_marginHorizontal="5dp"
+            android:inputType="textCapCharacters"
+            android:cursorVisible="false"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inputLayoutBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputLayoutYellow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input11"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:inputType="textCapCharacters"
+            android:importantForAutofill="no"
+            android:textAllCaps="true"
+            android:cursorVisible="false"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input12"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:inputType="textCapCharacters"
+            android:importantForAutofill="no"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input13"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:importantForAutofill="no"
+            android:cursorVisible="false"
+            android:inputType="textCapCharacters"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input14"
+            android:layout_width="40dp"
+            android:importantForAutofill="no"
+            android:layout_height="35dp"
+            android:layout_marginHorizontal="5dp"
+            android:inputType="textCapCharacters"
+            android:cursorVisible="false"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+        <EditText
+            android:id="@+id/input15"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:importantForAutofill="no"
+            android:layout_marginHorizontal="5dp"
+            android:inputType="textCapCharacters"
+            android:cursorVisible="false"
+            android:background="@color/design_default_color_primary"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            tools:text="-" />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inputLayout"
+        android:layout_below="@id/inputLayoutBlack"
         android:layout_marginTop="20sp"
         android:layout_centerHorizontal="true"
         android:fillViewport="true">
