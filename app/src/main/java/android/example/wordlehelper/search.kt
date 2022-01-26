@@ -12,10 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import android.view.View.OnFocusChangeListener
-
-
-
 
 
 class search : AppCompatActivity() {
@@ -25,37 +21,6 @@ class search : AppCompatActivity() {
 
         var filteredList: List<String> = listOf()
         var wordList: MutableList<String> = mutableListOf()
-
-
-
-        /** Color change on Input 1*/
-        val input1Color = findViewById<EditText>(R.id.input1)
-         input1Color.setOnFocusChangeListener { v, hasFocus ->
-             if (hasFocus) input1Color.setBackgroundColor(resources.getColor(R.color.secundario)) // #6200EE
-         }
-                /** Color change on Input 2*/
-        val input2Color = findViewById<EditText>(R.id.input2)
-         input2Color.setOnFocusChangeListener { v, hasFocus ->
-             if (hasFocus) input2Color.setBackgroundColor(resources.getColor(R.color.secundario)) // #6200EE
-         }
-                /** Color change on Input 3*/
-        val input3Color = findViewById<EditText>(R.id.input3)
-         input3Color.setOnFocusChangeListener { v, hasFocus ->
-             if (hasFocus) input3Color.setBackgroundColor(resources.getColor(R.color.secundario)) // #6200EE
-         }
-                /** Color change on Input 4*/
-        val input4Color = findViewById<EditText>(R.id.input4)
-         input4Color.setOnFocusChangeListener { v, hasFocus ->
-             if (hasFocus) input4Color.setBackgroundColor(resources.getColor(R.color.secundario)) // #6200EE
-         }
-                /** Color change on Input 5*/
-        val input5Color = findViewById<EditText>(R.id.input5)
-         input5Color.setOnFocusChangeListener { v, hasFocus ->
-             if (hasFocus) input5Color.setBackgroundColor(resources.getColor(R.color.secundario)) // #6200EE
-         }
-
-
-
 
         /** Click on SHOW LIST Button*/
         val showListButton = findViewById<Button>(R.id.showListBtn)
@@ -138,23 +103,36 @@ class search : AppCompatActivity() {
             //}
         }
 
-        /** Change of text on Input 1*/
+        /** Click on Input 1*/
         val input1 = findViewById<EditText>(R.id.input1)
+        input1.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                input1.setText("")
+                input1.setBackgroundColor(resources.getColor(R.color.secundario))
+            }
+        }
+
         input1.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                input1Color.setBackgroundColor(resources.getColor(R.color.design_default_color_secondary)) // #6200EE
-
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 hideKeyboard()
-                input1Color.setBackgroundColor(resources.getColor(R.color.design_default_color_primary)) // #6200EE
+                if (s.toString().equals("")) input1.setBackgroundColor(resources.getColor(R.color.secundario))
+                else input1.setBackgroundColor(resources.getColor(R.color.verde)) // #6200EE
             }
         })
 
-        /** Change of text on Input 2*/
+        /** Click on Input 2*/
         val input2 = findViewById<EditText>(R.id.input2)
+        input2.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                input2.setText("")
+                input2.setBackgroundColor(resources.getColor(R.color.secundario))
+            }
+        }
+
         input2.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -162,12 +140,20 @@ class search : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 hideKeyboard()
-                input2Color.setBackgroundColor(resources.getColor(R.color.design_default_color_primary)) // #6200EE
+                if (s.toString().equals("")) input2.setBackgroundColor(resources.getColor(R.color.secundario))
+                else input2.setBackgroundColor(resources.getColor(R.color.verde)) // #6200EE
             }
         })
 
-        /** Change of text on Input 3*/
+        /** Click on Input 3*/
         val input3 = findViewById<EditText>(R.id.input3)
+        input3.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                input3.setText("")
+                input3.setBackgroundColor(resources.getColor(R.color.secundario))
+            }
+        }
+
         input3.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -175,12 +161,20 @@ class search : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 hideKeyboard()
-                input3Color.setBackgroundColor(resources.getColor(R.color.design_default_color_primary)) // #6200EE
+                if (s.toString().equals("")) input3.setBackgroundColor(resources.getColor(R.color.design_default_color_primary))
+                else input3.setBackgroundColor(resources.getColor(R.color.verde)) // #6200EE
             }
         })
 
-        /** Change of text on Input 4*/
+        /** Click on Input 4*/
         val input4 = findViewById<EditText>(R.id.input4)
+        input4.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                input4.setText("")
+                input4.setBackgroundColor(resources.getColor(R.color.secundario))
+            }
+        }
+
         input4.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -188,12 +182,20 @@ class search : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 hideKeyboard()
-                input4Color.setBackgroundColor(resources.getColor(R.color.design_default_color_primary)) // #6200EE
+                if (s.toString().equals("")) input4.setBackgroundColor(resources.getColor(R.color.design_default_color_primary))
+                else input4.setBackgroundColor(resources.getColor(R.color.verde)) // #6200EE
             }
         })
 
-        /** Change of text on Input 5*/
+        /** Click on Input 5*/
         val input5 = findViewById<EditText>(R.id.input5)
+        input5.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                input5.setText("")
+                input5.setBackgroundColor(resources.getColor(R.color.secundario))
+            }
+        }
+
         input5.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -201,7 +203,8 @@ class search : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 hideKeyboard()
-                input5Color.setBackgroundColor(resources.getColor(R.color.design_default_color_primary)) // #6200EE
+                if (s.toString().equals("")) input5.setBackgroundColor(resources.getColor(R.color.design_default_color_primary))
+                else input5.setBackgroundColor(resources.getColor(R.color.verde)) // #6200EE
             }
         })
 

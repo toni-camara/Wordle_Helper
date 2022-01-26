@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/drawable/back.xml" value="0.242" />
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/layout/activity_game.xml" value="0.4631578947368421" />
         <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/layout/activity_main.xml" value="0.55" />
-        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/layout/activity_search.xml" value="0.55" />
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/layout/activity_search.xml" value="0.36102564102564105" />
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/layout/key_preview.xml" value="0.55" />
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/layout/keyboard_view.xml" value="0.55" />
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/xml/method.xml" value="0.55" />
+        <entry key="..\:/Users/eyque/AndroidStudioProjects/WordleHelper/app/src/main/res/xml/number_pad.xml" value="0.55" />
       </map>
     </option>
   </component>

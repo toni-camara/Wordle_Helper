@@ -99,3 +99,6 @@ class myMethods {
 
 }
 
+enum class letterColor{
+    GREEN, YELLOW, BLACK, GREY
+}
