@@ -19,6 +19,7 @@ class search : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
+        var noResultsListed: List<String> = listOf("There's no coincidence")
         var filteredList: List<String> = listOf()
         var wordList: MutableList<String> = mutableListOf()
 
@@ -208,7 +209,8 @@ class search : AppCompatActivity() {
 
             wordList = myMethods().readWordsFromFile(this@search).toMutableList()
             filteredList = myMethods().searchForInput(wordList, input)
-            myMethods().drawWordList(filteredList, this)
+            if (filteredList.isEmpty()) myMethods().drawWordList(noResultsListed, this)
+            else myMethods().drawWordList(filteredList, this)
 
             //}
         }

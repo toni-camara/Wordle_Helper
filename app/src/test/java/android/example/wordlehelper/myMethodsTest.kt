@@ -11,7 +11,7 @@ class myMethodsTest {
         val inputLetter = 'a'
         val posicion = 2
 
-        val resultado = myMethods().deleteRestOfWords(mutableList, inputLetter, posicion)
+        val resultado = myMethods().deleteRestOfWordsGreen(mutableList, inputLetter, posicion)
 
         val expectedResult = mutableListOf("koala")
         assertEquals(expectedResult, resultado)
@@ -24,7 +24,7 @@ class myMethodsTest {
         val inputLetter = 'Y'
         val posicion = 0
 
-        val resultado = myMethods().deleteRestOfWords(mutableList, inputLetter, posicion)
+        val resultado = myMethods().deleteRestOfWordsGreen(mutableList, inputLetter, posicion)
 
         val expectedResult = mutableListOf<String>()
         assertEquals(expectedResult, resultado)
