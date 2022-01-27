@@ -12,7 +12,6 @@
         android:id="@+id/gameHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-light"
         android:text="WORDLE"
@@ -316,6 +315,7 @@
     // KEYBOARD LAYOUT
 
     <LinearLayout
+        android:id="@+id/keyboardContainerLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -333,42 +333,52 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardQ"
                 style="@style/KeyboardLetter"
                 android:text="Q" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardW"
                 style="@style/KeyboardLetter"
                 android:text="W" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardE"
                 style="@style/KeyboardLetter"
                 android:text="E" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardR"
                 style="@style/KeyboardLetter"
                 android:text="R" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardT"
                 style="@style/KeyboardLetter"
                 android:text="T" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardY"
                 style="@style/KeyboardLetter"
                 android:text="Y" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardU"
                 style="@style/KeyboardLetter"
                 android:text="U" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardI"
                 style="@style/KeyboardLetter"
                 android:text="I" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardO"
                 style="@style/KeyboardLetter"
                 android:text="O" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardP"
                 style="@style/KeyboardLetter"
                 android:text="P" />
         </LinearLayout>
@@ -381,42 +391,52 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardA"
                 style="@style/KeyboardLetter"
                 android:text="A" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardS"
                 style="@style/KeyboardLetter"
                 android:text="S" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardD"
                 style="@style/KeyboardLetter"
                 android:text="D" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardF"
                 style="@style/KeyboardLetter"
                 android:text="F" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardG"
                 style="@style/KeyboardLetter"
                 android:text="G" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardH"
                 style="@style/KeyboardLetter"
                 android:text="H" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardJ"
                 style="@style/KeyboardLetter"
                 android:text="J" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardK"
                 style="@style/KeyboardLetter"
                 android:text="K" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardL"
                 style="@style/KeyboardLetter"
                 android:text="L" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardÑ"
                 style="@style/KeyboardLetter"
                 android:text="Ñ" />
         </LinearLayout>
@@ -429,38 +449,47 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardEnter"
                 style="@style/KeyboardLetter"
                 android:text="ENTER" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardZ"
                 style="@style/KeyboardLetter"
                 android:text="Z" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardX"
                 style="@style/KeyboardLetter"
                 android:text="X" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardC"
                 style="@style/KeyboardLetter"
                 android:text="C" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardV"
                 style="@style/KeyboardLetter"
                 android:text="V" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardB"
                 style="@style/KeyboardLetter"
                 android:text="B" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardN"
                 style="@style/KeyboardLetter"
                 android:text="N" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardM"
                 style="@style/KeyboardLetter"
                 android:text="M" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/keyboardDel"
                 style="@style/KeyboardLetter"
                 android:layout_height="wrap_content"
                 android:text="DEL" />
