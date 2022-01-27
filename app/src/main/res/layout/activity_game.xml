@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_launcher_foreground"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -18,145 +18,97 @@
         android:text="WORDLE"
         android:textSize="30sp" />
 
+    //WORD CONTAINER
     <LinearLayout
+        android:id="@+id/wordsContainerOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-
         android:orientation="vertical">
 
+        //FIRST WORD
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="2dp"
             android:layout_weight="1"
-            android:layout_marginHorizontal="16dp"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess11"
+                style="@style/GuessLetter"
                 tools:text="1"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
-
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess12"
+                style="@style/GuessLetter"
                 tools:text="2"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
-
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess13"
+                style="@style/GuessLetter"
                 tools:text="3"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
-
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess14"
+                style="@style/GuessLetter"
                 tools:text="4"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
-
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                tools:text="5"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
+            <TextView
+                android:id="@+id/Guess15"
+                style="@style/GuessLetter"
+                tools:text="5"
                 />
 
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_horizontal"
             android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
             android:layout_marginVertical="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess21"
+                style="@style/GuessLetter"
                 tools:text="1"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
-
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess22"
+                style="@style/GuessLetter"
                 tools:text="2"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess23"
+                style="@style/GuessLetter"
                 tools:text="3"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess24"
+                style="@style/GuessLetter"
                 tools:text="4"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess25"
+                style="@style/GuessLetter"
                 tools:text="5"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
 
@@ -165,263 +117,182 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_horizontal"
             android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
             android:layout_marginVertical="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess31"
+                style="@style/GuessLetter"
                 tools:text="1"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess32"
+                style="@style/GuessLetter"
                 tools:text="2"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess33"
+                style="@style/GuessLetter"
                 tools:text="3"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess34"
+                style="@style/GuessLetter"
                 tools:text="4"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess35"
+                style="@style/GuessLetter"
                 tools:text="5"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_horizontal"
             android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
             android:layout_marginVertical="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess41"
+                style="@style/GuessLetter"
                 tools:text="1"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess42"
+                style="@style/GuessLetter"
                 tools:text="2"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess43"
+                style="@style/GuessLetter"
                 tools:text="3"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess44"
+                style="@style/GuessLetter"
                 tools:text="4"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess45"
+                style="@style/GuessLetter"
                 tools:text="5"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_horizontal"
             android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
             android:layout_marginVertical="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess51"
+                style="@style/GuessLetter"
                 tools:text="1"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess52"
+                style="@style/GuessLetter"
                 tools:text="2"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess53"
+                style="@style/GuessLetter"
                 tools:text="3"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess54"
+                style="@style/GuessLetter"
                 tools:text="4"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess55"
+                style="@style/GuessLetter"
                 tools:text="5"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_horizontal"
             android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
             android:layout_marginVertical="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess61"
+                style="@style/GuessLetter"
                 tools:text="1"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess62"
+                style="@style/GuessLetter"
                 tools:text="2"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess63"
+                style="@style/GuessLetter"
                 tools:text="3"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess64"
+                style="@style/GuessLetter"
                 tools:text="4"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/Guess65"
+                style="@style/GuessLetter"
                 tools:text="5"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginHorizontal="2dp"
 
                 />
 
@@ -437,146 +308,164 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40sp"
+        android:layout_marginBottom="10dp"
         android:background="#6746c3"
         android:text="Show a Hint" />
 
 
     // KEYBOARD LAYOUT
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="20dp"
+        android:layout_marginHorizontal="4dp"
         android:orientation="vertical">
 
         //FIRST ROW
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Q"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="W"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="E"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="R"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="T"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="Y"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="U"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="I"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="O"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="P"
-                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="Q" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="W" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="E" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="R" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="T" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="Y" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="U" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="I" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="O" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="P" />
         </LinearLayout>
 
         //SECOND ROW
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:text="A"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="S"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="D"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="F"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="G"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="H"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="J"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="K"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="L"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="Ñ"
-                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="A" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="S" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="D" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="F" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="G" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="H" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="J" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="K" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="L" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="Ñ" />
         </LinearLayout>
 
         //THIRD ROW
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="ENTER" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="Z" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="X" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="C" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="V" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="B" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="N" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:text="M" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/KeyboardLetter"
+                android:layout_height="wrap_content"
+                android:text="DEL" />
         </LinearLayout>
     </LinearLayout>
-
 
 
 </LinearLayout>

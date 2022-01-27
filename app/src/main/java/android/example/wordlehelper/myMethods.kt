@@ -69,8 +69,8 @@ class myMethods {
         for (word in wordList) {
             word.lowercase().forEachIndexed() { index, letter ->
                 input.forEachIndexed(){inputIndex,inputLetter ->
-                    if (!word.contains(inputLetter.toString())) updatedList.remove(word)
-                    else {
+                    //if (!word.contains(inputLetter.toString())) updatedList.remove(word)
+                    //else {
 
                         // Si la letra que toca corresponde a una verde en el input
                         val comparacion = input[inputIndex].color
@@ -86,7 +86,7 @@ class myMethods {
                         // Si la palabra contiene negras
                         else if (comparacion == android.example.wordlehelper.input.letterColor.BLACK && input[inputIndex].letter == letter)
                             updatedList.remove(word)
-                    }
+                 //   }
                 }
 
 
