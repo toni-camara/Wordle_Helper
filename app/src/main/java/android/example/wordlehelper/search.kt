@@ -22,10 +22,13 @@ class search : AppCompatActivity() {
         var noResultsListed: List<String> = listOf("There's no coincidence")
         var filteredList: List<String> = listOf()
         var wordList: MutableList<String> = mutableListOf()
+        wordList = myMethods().readWordsFromFile(this@search).toMutableList()
 
-        /** Click on SHOW LIST Button*/
+        /** Click on RESET LIST Button*/
         val showListButton = findViewById<Button>(R.id.showListBtn)
         showListButton.setOnClickListener {
+
+            //Reset List
             wordList.clear()
             var input1Text = findViewById<EditText>(R.id.input1)
             input1Text.setText("")
@@ -57,7 +60,7 @@ class search : AppCompatActivity() {
             input14Text.setText("")
             var input15Text = findViewById<EditText>(R.id.input15)
             input15Text.setText("")
-            //wordList = myMethods().readWordsFromFile(this@search).toMutableList()
+
             myMethods().drawWordList(wordList, this)
         }
 
