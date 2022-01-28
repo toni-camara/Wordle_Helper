@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.forEachIndexed
 import kotlin.random.Random
 
 class game : AppCompatActivity() {
@@ -101,19 +102,48 @@ class game : AppCompatActivity() {
 
                     //TECLA ENTER
                     else if (keyboardButton.text.toString() == "ENTER") {
-                   /**     val activeWord = findViewById<LinearLayout>(R.id.wordsContainerOverlay)
-                        for (row in 0 until activeWord.childCount) {
-                            val wordRow = activeWord.getChildAt(row) as LinearLayout
-                            for (casilla in 0 until wordRow.childCount) {
-                                val letter = wordRow.getChildAt(casilla) as TextView*/
+                        val activeLetter = currentFocus as TextView
+                        val parent = activeLetter.parent as LinearLayout
+                        val activeLetterIndex = parent.indexOfChild(activeLetter)
+
+
+                        val guessedWordLetters = mutableListOf<String>()
+                        var guessedWord: String
+                        if(activeLetterIndex == 4){
+
+                            //Recoger las letras en la fila
+                            for (letter in 0 until parent.childCount){
+                                val currentLetter = parent.getChildAt(letter) as TextView
+                                guessedWordLetters.add(currentLetter.text.toString().toLowerCase())
+
+                            }
+                            guessedWord = guessedWordLetters.joinToString("")
+
+                            //Comprobar que la palabra introducida es valida
+                            if (!wordList.contains(guessedWord)) println("la palabra $guessedWord no es válida")
+                            else {
+                                println("La palabra a adivinar es $goalWord \n Tu palabra introducida es $guessedWord y es valida")
+                                guessedWord.lowercase().forEachIndexed() { index, letter ->
+                                    if (guessedWord[index] == goalWord[index]){
+                                        val comparedLetter = parent.getChildAt(index) as TextView
+                                        comparedLetter.setBackgroundColor(resources.getColor(R.color.verde))
+                                    }
+                                    else if (goalWord.contains(letter)){
+                                        val comparedLetter = parent.getChildAt(index) as TextView
+                                        comparedLetter.setBackgroundColor(resources.getColor(R.color.amarillo))
+                                    }
+                                    else if (!goalWord.contains(letter)){
+                                        val comparedLetter = parent.getChildAt(index) as TextView
+                                        comparedLetter.setBackgroundColor(resources.getColor(R.color.negro))
+                                    }
+
+                                }
+                            }
+                        }
+
                     }
-
-
                 }
-
             }
         }
-
-
     }
 }

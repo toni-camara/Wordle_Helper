@@ -207,7 +207,7 @@ class search : AppCompatActivity() {
 
             //if (wordList.isNotEmpty()) { // Verifies that the list has been obtained from the file
 
-            wordList = myMethods().readWordsFromFile(this@search).toMutableList()
+
             filteredList = myMethods().searchForInput(wordList, input)
             if (filteredList.isEmpty()) myMethods().drawWordList(noResultsListed, this)
             else myMethods().drawWordList(filteredList, this)
