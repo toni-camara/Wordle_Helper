@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/gameHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,31 +35,31 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess11"
                 style="@style/GuessLetter"
                 tools:text="1"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess12"
                 style="@style/GuessLetter"
                 tools:text="2"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess13"
                 style="@style/GuessLetter"
                 tools:text="3"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess14"
                 style="@style/GuessLetter"
                 tools:text="4"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess15"
                 style="@style/GuessLetter"
                 tools:text="5"
@@ -77,34 +77,34 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess21"
                 style="@style/GuessLetter"
                 tools:text="1"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess22"
                 style="@style/GuessLetter"
                 tools:text="2"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess23"
                 style="@style/GuessLetter"
                 tools:text="3"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess24"
                 style="@style/GuessLetter"
                 tools:text="4"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess25"
                 style="@style/GuessLetter"
                 tools:text="5"
@@ -122,35 +122,35 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess31"
                 style="@style/GuessLetter"
                 tools:text="1"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess32"
                 style="@style/GuessLetter"
                 tools:text="2"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess33"
                 style="@style/GuessLetter"
                 tools:text="3"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess34"
                 style="@style/GuessLetter"
                 tools:text="4"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess35"
                 style="@style/GuessLetter"
                 tools:text="5"
@@ -168,35 +168,35 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess41"
                 style="@style/GuessLetter"
                 tools:text="1"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess42"
                 style="@style/GuessLetter"
                 tools:text="2"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess43"
                 style="@style/GuessLetter"
                 tools:text="3"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess44"
                 style="@style/GuessLetter"
                 tools:text="4"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess45"
                 style="@style/GuessLetter"
                 tools:text="5"
@@ -214,35 +214,35 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess51"
                 style="@style/GuessLetter"
                 tools:text="1"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess52"
                 style="@style/GuessLetter"
                 tools:text="2"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess53"
                 style="@style/GuessLetter"
                 tools:text="3"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess54"
                 style="@style/GuessLetter"
                 tools:text="4"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess55"
                 style="@style/GuessLetter"
                 tools:text="5"
@@ -260,35 +260,35 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess61"
                 style="@style/GuessLetter"
                 tools:text="1"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess62"
                 style="@style/GuessLetter"
                 tools:text="2"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess63"
                 style="@style/GuessLetter"
                 tools:text="3"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess64"
                 style="@style/GuessLetter"
                 tools:text="4"
 
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Guess65"
                 style="@style/GuessLetter"
                 tools:text="5"
