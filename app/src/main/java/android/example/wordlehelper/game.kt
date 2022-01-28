@@ -70,9 +70,20 @@ class game : AppCompatActivity() {
                 keyboardButton.setOnClickListener {
 
                     //TECLAS DE LETRA
+                    val activeLetter = currentFocus as TextView
+                    val parent = activeLetter.parent as LinearLayout
+                    val activeLetterIndex = parent.indexOfChild(activeLetter)
+
+
                     if (keyboardButton.text != "ENTER" && keyboardButton.text != "DEL") {
+                        if (activeLetter.text.toString() == "") {
+                            val activeLetter = currentFocus as TextView
+                            activeLetter.text = keyboardButton.text
+                        }
+                        /**else if (activeLetter.text.toString() == ""){
                         val activeLetter = currentFocus as TextView
                         activeLetter.text = keyboardButton.text
+                        }*/
                     }
 
                     //TECLA BORRAR
@@ -91,8 +102,7 @@ class game : AppCompatActivity() {
                             } else {
                                 if (activeLetter.text.toString() != "") {
                                     activeLetter.text = ""
-                                }
-                                else {
+                                } else {
                                     nextLetraActiva.text = ""
                                     nextLetraActiva.requestFocus()
                                 }
@@ -109,10 +119,10 @@ class game : AppCompatActivity() {
 
                         val guessedWordLetters = mutableListOf<String>()
                         var guessedWord: String
-                        if(activeLetterIndex == 4){
+                        if (activeLetterIndex == 4) {
 
                             //Recoger las letras en la fila
-                            for (letter in 0 until parent.childCount){
+                            for (letter in 0 until parent.childCount) {
                                 val currentLetter = parent.getChildAt(letter) as TextView
                                 guessedWordLetters.add(currentLetter.text.toString().toLowerCase())
 
@@ -122,22 +132,90 @@ class game : AppCompatActivity() {
                             //Comprobar que la palabra introducida es valida
                             if (!wordList.contains(guessedWord)) println("la palabra $guessedWord no es válida")
                             else {
+                                //LA PALABRA ES VALIDA, LET'S GO!!!
                                 println("La palabra a adivinar es $goalWord \n Tu palabra introducida es $guessedWord y es valida")
                                 guessedWord.lowercase().forEachIndexed() { index, letter ->
-                                    if (guessedWord[index] == goalWord[index]){
+
+                                    //VERDE
+                                    if (guessedWord[index] == goalWord[index]) {
                                         val comparedLetter = parent.getChildAt(index) as TextView
                                         comparedLetter.setBackgroundColor(resources.getColor(R.color.verde))
+
+                                        for (row in 0 until keyboardLayout.childCount) {
+                                            val keyboardRow =
+                                                keyboardLayout.getChildAt(row) as LinearLayout
+
+                                            for (button in 0 until keyboardRow.childCount) {
+                                                val keyboardButton =
+                                                    keyboardRow.getChildAt(button) as Button
+                                                if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                                    keyboardButton.setBackgroundColor(
+                                                        resources.getColor(
+                                                            R.color.verde
+                                                        )
+                                                    )
+                                            }
+                                        }
+
                                     }
-                                    else if (goalWord.contains(letter)){
+
+                                    //AMARILLO
+                                    else if (goalWord.contains(letter)) {
                                         val comparedLetter = parent.getChildAt(index) as TextView
                                         comparedLetter.setBackgroundColor(resources.getColor(R.color.amarillo))
+
+                                        for (row in 0 until keyboardLayout.childCount) {
+                                            val keyboardRow =
+                                                keyboardLayout.getChildAt(row) as LinearLayout
+
+                                            for (button in 0 until keyboardRow.childCount) {
+                                                val keyboardButton =
+                                                    keyboardRow.getChildAt(button) as Button
+                                                if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                                    keyboardButton.setBackgroundColor(
+                                                        resources.getColor(
+                                                            R.color.amarillo
+                                                        )
+                                                    )
+                                            }
+                                        }
                                     }
-                                    else if (!goalWord.contains(letter)){
+
+                                    //NEGRO
+                                    else if (!goalWord.contains(letter)) {
                                         val comparedLetter = parent.getChildAt(index) as TextView
                                         comparedLetter.setBackgroundColor(resources.getColor(R.color.negro))
+
+                                        for (row in 0 until keyboardLayout.childCount) {
+                                            val keyboardRow =
+                                                keyboardLayout.getChildAt(row) as LinearLayout
+
+                                            for (button in 0 until keyboardRow.childCount) {
+                                                val keyboardButton =
+                                                    keyboardRow.getChildAt(button) as Button
+                                                if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                                    keyboardButton.setBackgroundColor(
+                                                        resources.getColor(
+                                                            R.color.negro
+                                                        )
+                                                    )
+                                            }
+                                        }
                                     }
 
                                 }
+
+   //TODO                             //PASAR A LA SIGUIENTE FILA
+
+                                val activeLetter = currentFocus as TextView
+                                val parent = activeLetter.parent as LinearLayout
+                                val parentOfParent = parent.parent as LinearLayout
+
+
+                                val indexOfNextLine = parentOfParent.indexOfChild(parent) + 1
+                                val nextParent = parentOfParent.getChildAt(indexOfNextLine) as LinearLayout
+                                val nextActiveLetter = nextParent.getChildAt(0)
+                                nextActiveLetter.requestFocus()
                             }
                         }
 
