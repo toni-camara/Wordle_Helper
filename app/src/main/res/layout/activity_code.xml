@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             android:background="#6746c3"
-            android:text="Read on Github"
+            android:text="Leer en Github"
             android:onClick="github"
             android:textColor="@color/white" />
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="#1de9b6"
-            android:text="About" />
+            android:text="Acerca de" />
 
     </LinearLayout>
 

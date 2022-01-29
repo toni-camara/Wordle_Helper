@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             android:background="#6746c3"
-            android:text="Play Game"
+            android:text="Jugar"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="#1de9b6"
-            android:text="Search Words" />
+            android:text="Buscar Palabras" />
 
     </LinearLayout>
 
@@ -55,6 +55,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40sp"
         android:background="#6746c3"
-        android:text="Read the Code" />
+        android:text="Leer el Codigo" />
 
 </RelativeLayout>

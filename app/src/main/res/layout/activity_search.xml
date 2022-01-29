@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             android:background="#6746c3"
-            android:text="Reset List"
+            android:text="Reiniciar Filtros"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#1de9b6"
-            android:text="Filter" />
+            android:text="Filtrar" />
 
 
     </LinearLayout>

@@ -309,7 +309,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="#6746c3"
-        android:text="Show a Hint" />
+        android:text="Hacer Trampa" />
 
 
     // KEYBOARD LAYOUT
@@ -450,7 +450,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/keyboardEnter"
-                style="@style/KeyboardLetter"
+                style="@style/EnterButton"
                 android:text="ENTER" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -490,7 +490,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/keyboardDel"
-                style="@style/KeyboardLetter"
+                style="@style/DeleteButton"
                 android:layout_height="wrap_content"
                 android:text="DEL" />
         </LinearLayout>
