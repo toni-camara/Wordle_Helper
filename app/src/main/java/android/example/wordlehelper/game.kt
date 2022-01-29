@@ -215,7 +215,8 @@ class game : AppCompatActivity() {
                                 val parentOfParent = parent.parent as LinearLayout
 
 
-                                val indexOfNextLine = parentOfParent.indexOfChild(parent) + 1
+                                var indexOfNextLine = parentOfParent.indexOfChild(parent)
+                                if (parentOfParent.indexOfChild(parent) < 5 ) indexOfNextLine = parentOfParent.indexOfChild(parent) + 1
                                 val nextParent = parentOfParent.getChildAt(indexOfNextLine) as LinearLayout
                                 val nextActiveLetter = nextParent.getChildAt(0)
                                 nextActiveLetter.requestFocus()
