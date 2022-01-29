@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/ic_launcher_foreground"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -27,23 +28,25 @@
         android:orientation="vertical"
         android:paddingHorizontal="20sp">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/githubBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
-            android:background="#6746c3"
+            android:backgroundTint="@color/design_default_color_primary"
+            app:icon="@drawable/link_icon"
             android:text="Leer en Github"
             android:onClick="github"
             android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/aboutBtn"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="match_parent"
+            app:icon="@drawable/about_icon"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="#1de9b6"
+            android:backgroundTint="@color/white"
             android:text="Acerca de" />
 
     </LinearLayout>

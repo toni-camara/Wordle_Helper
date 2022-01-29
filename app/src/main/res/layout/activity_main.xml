@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,36 +15,72 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-light"
-        android:text="WORDLE HELPER"
+        android:text="@string/app_name"
+        android:textColor="@color/design_default_color_primary"
         android:textSize="30sp" />
 
     <LinearLayout
-        android:layout_width="200sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mainHeader"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingHorizontal="20sp">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/playBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:background="#6746c3"
-            android:text="Jugar"
-            android:textColor="@color/white" />
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/verde"
+            android:text="@string/play_button"
+            android:textColor="@color/white"
+            app:icon="@drawable/play_icon"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/searchBtn"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="#1de9b6"
-            android:text="Buscar Palabras" />
+            android:backgroundTint="@color/amarillo"
+            android:singleLine="true"
+
+            android:text="@string/search_button"
+            android:textColor="@color/black"
+            app:icon="@drawable/search_icon"
+            app:iconTint="@color/black"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
+
+        <Button
+            android:id="@+id/learnBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/gris"
+            android:singleLine="true"
+            android:text="@string/howTo_button"
+            android:textColor="@color/black"
+            app:icon="@drawable/outline_info_black_24"
+
+            app:iconTint="@color/black"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
+
+        <Button
+            android:id="@+id/settingsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/white"
+            android:singleLine="true"
+            android:text="@string/settings_button"
+            android:textColor="@color/design_default_color_primary"
+            app:icon="@drawable/baseline_settings_24"
+            app:iconTint="@color/design_default_color_primary"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            app:strokeColor="@color/design_default_color_primary"
+            app:strokeWidth="1dp" />
 
     </LinearLayout>
 
@@ -54,7 +91,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40sp"
-        android:background="#6746c3"
-        android:text="Leer el Codigo" />
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:text="@string/code_button"
+        app:icon="@drawable/code_icon" />
 
 </RelativeLayout>

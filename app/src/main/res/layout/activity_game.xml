@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,24 +9,42 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/gameHeader"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:fontFamily="sans-serif-light"
-        android:text="WORDLE"
-        android:textSize="30sp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/white"
+            android:padding="8dp"
+            app:icon="@drawable/outline_info_black_24"
+            app:iconTint="@color/grisOscuro" />
+
+        <TextView
+            android:id="@+id/gameHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/game_header"
+            android:textSize="30sp" />
+    </RelativeLayout>
 
     //WORD CONTAINER
+
     <LinearLayout
         android:id="@+id/wordsContainerOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         //FIRST WORD
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -35,35 +54,30 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess11"
                 style="@style/GuessLetter"
-                tools:text="1"
-                />
+                tools:text="1-1" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess12"
                 style="@style/GuessLetter"
-                tools:text="2"
-                />
+                tools:text="1-2" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess13"
                 style="@style/GuessLetter"
-                tools:text="3"
-                />
+                tools:text="1-3" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess14"
                 style="@style/GuessLetter"
-                tools:text="4"
-                />
+                tools:text="1-4" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess15"
                 style="@style/GuessLetter"
-                tools:text="5"
-                />
+                tools:text="1-5" />
 
         </LinearLayout>
 
@@ -77,37 +91,36 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess21"
                 style="@style/GuessLetter"
-                tools:text="1"
-                />
+                tools:text="2-1" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess22"
                 style="@style/GuessLetter"
-                tools:text="2"
+                tools:text="2-2"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess23"
                 style="@style/GuessLetter"
-                tools:text="3"
+                tools:text="2-3"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess24"
                 style="@style/GuessLetter"
-                tools:text="4"
+                tools:text="2-4"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess25"
                 style="@style/GuessLetter"
-                tools:text="5"
+                tools:text="2-5"
 
                 />
 
@@ -122,38 +135,38 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess31"
                 style="@style/GuessLetter"
-                tools:text="1"
+                tools:text="3-1"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess32"
                 style="@style/GuessLetter"
-                tools:text="2"
+                tools:text="3-2"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess33"
                 style="@style/GuessLetter"
-                tools:text="3"
+                tools:text="3-3"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess34"
                 style="@style/GuessLetter"
-                tools:text="4"
+                tools:text="3-4"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess35"
                 style="@style/GuessLetter"
-                tools:text="5"
+                tools:text="3-5"
 
                 />
 
@@ -168,38 +181,38 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess41"
                 style="@style/GuessLetter"
-                tools:text="1"
+                tools:text="4-1"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess42"
                 style="@style/GuessLetter"
-                tools:text="2"
+                tools:text="4-2"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess43"
                 style="@style/GuessLetter"
-                tools:text="3"
+                tools:text="4-3"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess44"
                 style="@style/GuessLetter"
-                tools:text="4"
+                tools:text="4-4"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess45"
                 style="@style/GuessLetter"
-                tools:text="5"
+                tools:text="4-5"
 
                 />
 
@@ -214,38 +227,38 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess51"
                 style="@style/GuessLetter"
-                tools:text="1"
+                tools:text="5-1"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess52"
                 style="@style/GuessLetter"
-                tools:text="2"
+                tools:text="5-2"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess53"
                 style="@style/GuessLetter"
-                tools:text="3"
+                tools:text="5-3"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess54"
                 style="@style/GuessLetter"
-                tools:text="4"
+                tools:text="5-4"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess55"
                 style="@style/GuessLetter"
-                tools:text="5"
+                tools:text="5-5"
 
                 />
 
@@ -260,38 +273,38 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess61"
                 style="@style/GuessLetter"
-                tools:text="1"
+                tools:text="6-1"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess62"
                 style="@style/GuessLetter"
-                tools:text="2"
+                tools:text="6-2"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess63"
                 style="@style/GuessLetter"
-                tools:text="3"
+                tools:text="6-3"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess64"
                 style="@style/GuessLetter"
-                tools:text="4"
+                tools:text="6-4"
 
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/Guess65"
                 style="@style/GuessLetter"
-                tools:text="5"
+                tools:text="6-5"
 
                 />
 
@@ -305,11 +318,13 @@
         android:id="@+id/hintBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="#6746c3"
-        android:text="Hacer Trampa" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/design_default_color_primary"
+        android:backgroundTint="@color/white"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+        app:strokeColor="@color/design_default_color_primary"
+        app:strokeWidth="1dp"
+        android:text="@string/cheat_button" />
 
 
     // KEYBOARD LAYOUT
@@ -318,11 +333,11 @@
         android:id="@+id/keyboardContainerLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginTop="20dp"
-        android:paddingVertical="20dp"
         android:layout_marginHorizontal="4dp"
-        android:orientation="vertical">
+        android:layout_marginTop="0dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingVertical="10dp">
 
         //FIRST ROW
 
