@@ -24,7 +24,7 @@ class game : AppCompatActivity() {
         wordList = myMethods().readWordsFromFile(this@game).toMutableList()
         val randomIndex = Random.nextInt(wordList.size);
         val goalWord = wordList[randomIndex]
-        println(goalWord)
+        println("La palabra elegida es $goalWord")  //Debug purposes
 
 
         /** INITIAL ACTIVE WORD TEXTVIEWS */

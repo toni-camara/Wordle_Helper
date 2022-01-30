@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mainHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +46,6 @@
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/amarillo"
             android:singleLine="true"
-
             android:text="@string/search_button"
             android:textColor="@color/black"
             app:icon="@drawable/search_icon"
@@ -63,7 +62,6 @@
             android:text="@string/howTo_button"
             android:textColor="@color/black"
             app:icon="@drawable/outline_info_black_24"
-
             app:iconTint="@color/black"
             app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
 
@@ -91,9 +89,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40sp"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
         android:backgroundTint="@color/design_default_color_primary"
         android:text="@string/code_button"
-        app:icon="@drawable/code_icon" />
+        app:icon="@drawable/code_icon"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
 
 </RelativeLayout>
