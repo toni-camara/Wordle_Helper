@@ -1,6 +1,8 @@
 package android.example.wordlehelper
 
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -243,14 +245,20 @@ class game : AppCompatActivity() {
                                             // Add customization options here
                                             .setMessage("Enhorabuena! Has acertado!")
 
-                                            .setNegativeButton("Atrás") { dialog, which ->
+                                            .setPositiveButton("Atrás") { dialog, which ->
                                                 // Respond to negative button press
+                                            }
+                                            .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { dialog, which ->
+                                                // Respond to positive button press
+                                                val website = Intent(Intent.ACTION_VIEW, Uri.parse("https://dle.rae.es/${goalWord.toString()}"))
+                                                startActivity(website)
                                             }
                                             .setNeutralButton("Nueva Partida") { dialog, which ->
                                                 // Respond to positive button press
                                                 finish();
                                                 startActivity(getIntent());
                                             }
+
                                             .show()
                                     }
 
@@ -278,8 +286,13 @@ class game : AppCompatActivity() {
                                             // Add customization options here
                                             .setMessage("Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}")
 
-                                            .setNegativeButton("Atrás") { dialog, which ->
+                                            .setPositiveButton("Atrás") { dialog, which ->
                                                 // Respond to negative button press
+                                            }
+                                            .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { dialog, which ->
+                                                // Respond to positive button press
+                                                val website = Intent(Intent.ACTION_VIEW, Uri.parse("https://dle.rae.es/${goalWord.toString()}"))
+                                                startActivity(website)
                                             }
                                             .setNeutralButton("Nueva Partida") { dialog, which ->
                                                 // Respond to positive button press
