@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.forEachIndexed
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.random.Random
 
 class game : AppCompatActivity() {
@@ -26,6 +27,19 @@ class game : AppCompatActivity() {
         val goalWord = wordList[randomIndex]
         println("La palabra elegida es $goalWord")  //Debug purposes
 
+
+        var verSolucion = findViewById<View>(R.id.hintBtn)
+        verSolucion.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                // Add customization options here
+                .setMessage("La palabra era ${goalWord.uppercase()}")
+
+
+                .setNegativeButton("atras") { dialog, which ->
+                    // Respond to negative button press
+                }
+                .show()
+        }
 
         /** INITIAL ACTIVE WORD TEXTVIEWS */
         var letraActiva = findViewById<View>(R.id.Guess11) as TextView
@@ -208,7 +222,7 @@ class game : AppCompatActivity() {
 
                                 }
 
-   //TODO                             //PASAR A LA SIGUIENTE FILA
+
 
                                 val activeLetter = currentFocus as TextView
                                 val parent = activeLetter.parent as LinearLayout
@@ -216,10 +230,80 @@ class game : AppCompatActivity() {
 
 
                                 var indexOfNextLine = parentOfParent.indexOfChild(parent)
-                                if (parentOfParent.indexOfChild(parent) < 5 ) indexOfNextLine = parentOfParent.indexOfChild(parent) + 1
-                                val nextParent = parentOfParent.getChildAt(indexOfNextLine) as LinearLayout
-                                val nextActiveLetter = nextParent.getChildAt(0)
-                                nextActiveLetter.requestFocus()
+                                if (parentOfParent.indexOfChild(parent) < 5 ) {
+                                    /**HAS ACERTADO*/
+                                    var correcta: Boolean = true
+                                    for (i in 0 until parent.childCount){
+                                        var compare = parent.getChildAt(i) as TextView
+                                        if( compare.text.toString().lowercase() != goalWord[i].toString())
+                                            correcta = false
+                                    }
+                                    if (correcta == true){
+                                        MaterialAlertDialogBuilder(this)
+                                            // Add customization options here
+                                            .setMessage("Enhorabuena! Has acertado!")
+
+                                            .setNegativeButton("Atrás") { dialog, which ->
+                                                // Respond to negative button press
+                                            }
+                                            .setNeutralButton("Nueva Partida") { dialog, which ->
+                                                // Respond to positive button press
+                                                finish();
+                                                startActivity(getIntent());
+                                            }
+                                            .show()
+                                    }
+
+                                    /** NO HAS ACERTADO*/
+                                    else {
+                                        indexOfNextLine = parentOfParent.indexOfChild(parent) + 1
+
+                                        val nextParent =
+                                            parentOfParent.getChildAt(indexOfNextLine) as LinearLayout
+                                        val nextActiveLetter = nextParent.getChildAt(0)
+                                        nextActiveLetter.requestFocus()
+                                    }
+                                }
+
+                                /** FIN DEL JUEGO */
+                                else {
+                                    var correcta: Boolean = true
+                                    for (i in 0 until parent.childCount){
+                                        var compare = parent.getChildAt(i) as TextView
+                                        if( compare.text.toString().lowercase() != goalWord[i].toString())
+                                            correcta = false
+                                    }
+                                    if (correcta == false){
+                                        MaterialAlertDialogBuilder(this)
+                                            // Add customization options here
+                                            .setMessage("Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}")
+
+                                            .setNegativeButton("Atrás") { dialog, which ->
+                                                // Respond to negative button press
+                                            }
+                                            .setNeutralButton("Nueva Partida") { dialog, which ->
+                                                // Respond to positive button press
+                                                finish();
+                                                startActivity(getIntent());
+                                            }
+                                            .show()
+                                    }
+                                   /** else if (correcta == true){
+                                        MaterialAlertDialogBuilder(this)
+                                            // Add customization options here
+                                            .setMessage("Enhorabuena! Has acertado!")
+
+                                            .setNegativeButton("atras") { dialog, which ->
+                                                // Respond to negative button press
+                                            }
+                                            .show()
+                                    }*/
+
+         //TODO
+
+
+
+                                }
                             }
                         }
 

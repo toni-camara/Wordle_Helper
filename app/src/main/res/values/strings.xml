@@ -6,7 +6,7 @@
     <string name="settings_button">Configuracion</string>
     <string name="code_button">Leer el Codigo</string>
     <string name="game_header">WORDLE</string>
-    <string name="cheat_button">Hacer Trampa</string>
+    <string name="cheat_button">Ver Solución</string>
 
 
 </resources>
