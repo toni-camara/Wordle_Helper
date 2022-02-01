@@ -36,6 +36,7 @@
             android:backgroundTint="@color/design_default_color_primary"
             android:text="Reiniciar Filtros"
             android:textColor="@color/white"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
             app:icon="@drawable/outline_refresh_black_18" />
 
         <Button

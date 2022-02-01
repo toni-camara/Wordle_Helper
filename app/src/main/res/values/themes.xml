@@ -2,6 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.WordleHelper" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
+        <item name="android:navigationBarColor">@color/background</item>
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">#6746c3</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -15,6 +17,47 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <!-- MAIN MENU BUTTONS -->
+    <style name="ButtonMain" parent="Theme.WordleHelper">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/buttonBackground</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="WhiteButton" parent="ButtonMain">
+        <item name="iconTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="BlueButton" parent="ButtonMain">
+        <item name="iconTint">@color/blue</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="rippleColor">@color/blueDark</item>
+    </style>
+
+    <style name="OrangeButton" parent="ButtonMain">
+        <item name="iconTint">@color/orange</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="rippleColor">@color/orangeDark</item>
+    </style>
+
+    <style name="GreenButton" parent="ButtonMain">
+        <item name="iconTint">@color/green</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="rippleColor">@color/greenDark</item>
+    </style>
+
+
+    <!-- KEYBOARD BUTTONS -->
     <style name="KeyboardLetter" parent="TextAppearance.AppCompat">
         <item name="android:textSize">20sp</item>
         <item name="android:layout_width">0dp</item>
@@ -26,6 +69,30 @@
         <item name="fontFamily">sans-serif-light</item>
         <item name="android:layout_weight">1</item>
     </style>
+
+    <style name="DeleteButton" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">2dp</item>
+        <item name="android:layout_marginVertical">2dp</item>
+        <item name="android:background">@color/rojo</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="EnterButton" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">2dp</item>
+        <item name="android:layout_marginVertical">2dp</item>
+        <item name="android:background">@color/verde</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- LETTER BOXES -->
     <style name="GuessLetter" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:maxWidth">0dp</item>
@@ -38,26 +105,8 @@
         <item name="android:gravity">center</item>
         <item name="android:textAlignment">center</item>
     </style>
-    <style name="DeleteButton" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">10sp</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginHorizontal">2dp</item>
-        <item name="android:layout_marginVertical">2dp</item>
-        <item name="android:background">@color/rojo</item>
-        <item name="android:layout_weight">1</item>
-    </style>
-    <style name="EnterButton" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">10sp</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginHorizontal">2dp</item>
-        <item name="android:layout_marginVertical">2dp</item>
-        <item name="android:background">@color/verde</item>
-        <item name="android:layout_weight">1</item>
-    </style>
 
-    <style name="PauseDialogAnimation"></style>
+
+
+
 </resources>

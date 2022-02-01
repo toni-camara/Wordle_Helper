@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_launcher_foreground"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -16,82 +16,75 @@
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/app_name"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/whiteText"
         android:textSize="30sp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mainHeader"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="70dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/playBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/verde"
+            style="@style/WhiteButton"
             android:text="@string/play_button"
-            android:textColor="@color/white"
-            app:icon="@drawable/play_icon"
-            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
+            app:icon="@drawable/play_icon" />
 
         <Button
             android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/amarillo"
-            android:singleLine="true"
+            style="@style/BlueButton"
             android:text="@string/search_button"
-            android:textColor="@color/black"
-            app:icon="@drawable/search_icon"
-            app:iconTint="@color/black"
-            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
+            app:icon="@drawable/search_icon" />
+
+        <Button
+            android:id="@+id/rankingsBtn"
+            style="@style/OrangeButton"
+            android:text="Rankings"
+            app:icon="@drawable/baseline_emoji_events_black_24" />
 
         <Button
             android:id="@+id/learnBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/gris"
-            android:singleLine="true"
+            style="@style/GreenButton"
             android:text="@string/howTo_button"
-            android:textColor="@color/black"
-            app:icon="@drawable/outline_info_black_24"
-            app:iconTint="@color/black"
-            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
+            app:icon="@drawable/outline_info_black_24" />
 
-        <Button
-            android:id="@+id/settingsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/white"
-            android:singleLine="true"
-            android:text="@string/settings_button"
-            android:textColor="@color/design_default_color_primary"
-            app:icon="@drawable/baseline_settings_24"
-            app:iconTint="@color/design_default_color_primary"
-            app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
-            app:strokeColor="@color/design_default_color_primary"
-            app:strokeWidth="1dp" />
 
     </LinearLayout>
 
+
     <Button
-        android:id="@+id/codeBtn"
+        android:id="@+id/bottomSheetExpandButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40sp"
-        android:backgroundTint="@color/design_default_color_primary"
-        android:text="@string/code_button"
-        app:icon="@drawable/code_icon"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton" />
+        android:background="@android:color/transparent"
+        app:icon="@drawable/baseline_keyboard_double_arrow_up_black_36"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/orange"
+         />
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/standard_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <!-- Bottom sheet contents. -->
+
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </RelativeLayout>

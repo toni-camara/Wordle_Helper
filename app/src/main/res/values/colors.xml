@@ -13,4 +13,15 @@
     <color name="amarillo">#fbc02d</color>
     <color name="negro">#8e8e8e</color>
     <color name="rojo">#b61827</color>
+    <color name="buttonBackground">#373740</color>
+    <color name="whiteText">#E2E2E3</color>
+    <color name="green">#1EB980</color>
+    <color name="orange">#FF6859</color>
+    <color name="yellow">#FFCF44</color>
+    <color name="blue">#72DEFF</color>
+    <color name="greenDark">#008853</color>
+    <color name="orangeDark">#c6352f</color>
+    <color name="yellowDark">#c89e00</color>
+    <color name="blueDark">#34accc</color>
+    <color name="background">#424250</color>
 </resources>

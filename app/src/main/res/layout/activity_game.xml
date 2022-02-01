@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_launcher_foreground"
+    android:background="@color/background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="sans-serif-light"
-            android:textColor="@color/design_default_color_primary"
             android:text="@string/game_header"
+            android:textColor="@color/white"
             android:textSize="30sp" />
     </RelativeLayout>
 
@@ -336,7 +336,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="0dp"
-        android:background="@color/white"
+        android:background="@color/background"
         android:orientation="vertical"
         android:paddingVertical="10dp">
 
@@ -409,7 +409,8 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/keyboardA"
                 style="@style/KeyboardLetter"
-                android:text="A" />
+                android:text="A"
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/keyboardS"

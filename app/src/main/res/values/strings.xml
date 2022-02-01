@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">WORDLE HELPER</string>
-    <string name="play_button">Jugar</string>
+    <string name="play_button">JUGAR</string>
     <string name="search_button">Buscar Palabras</string>
     <string name="howTo_button">Aprende a Jugar</string>
     <string name="settings_button">Configuracion</string>
