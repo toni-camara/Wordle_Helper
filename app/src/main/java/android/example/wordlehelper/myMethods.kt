@@ -2,11 +2,20 @@ package android.example.wordlehelper
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.Intent.getIntent
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
+import android.view.FocusFinder
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.IOException
+import java.io.ObjectInput
 
 
 class myMethods {
@@ -68,25 +77,25 @@ class myMethods {
 
         for (word in wordList) {
             word.lowercase().forEachIndexed() { index, letter ->
-                input.forEachIndexed(){inputIndex,inputLetter ->
+                input.forEachIndexed() { inputIndex, inputLetter ->
                     //if (!word.contains(inputLetter.toString())) updatedList.remove(word)
                     //else {
 
-                        // Si la letra que toca corresponde a una verde en el input
-                        val comparacion = input[inputIndex].color
-                        // MAPAS: input.get busca el color (value) de LETTER (key) en mi mapa de input
-                        // Si no existe LETTER en mi input, devuelve null
-                        if (comparacion == android.example.wordlehelper.input.letterColor.GREEN && index == inputIndex && input[inputIndex].letter == letter) {
-                            updatedList = deleteRestOfWordsGreen(updatedList, letter, index)
-                        }
-                        // Si la palabra contiene amarillas
-                        else if (comparacion == android.example.wordlehelper.input.letterColor.YELLOW && input[inputIndex].letter == letter) {
-                            updatedList = deleteRestOfWordsYellow(updatedList, letter, index)
-                        }
-                        // Si la palabra contiene negras
-                        else if (comparacion == android.example.wordlehelper.input.letterColor.BLACK && input[inputIndex].letter == letter)
-                            updatedList.remove(word)
-                 //   }
+                    // Si la letra que toca corresponde a una verde en el input
+                    val comparacion = input[inputIndex].color
+                    // MAPAS: input.get busca el color (value) de LETTER (key) en mi mapa de input
+                    // Si no existe LETTER en mi input, devuelve null
+                    if (comparacion == android.example.wordlehelper.input.letterColor.GREEN && index == inputIndex && input[inputIndex].letter == letter) {
+                        updatedList = deleteRestOfWordsGreen(updatedList, letter, index)
+                    }
+                    // Si la palabra contiene amarillas
+                    else if (comparacion == android.example.wordlehelper.input.letterColor.YELLOW && input[inputIndex].letter == letter) {
+                        updatedList = deleteRestOfWordsYellow(updatedList, letter, index)
+                    }
+                    // Si la palabra contiene negras
+                    else if (comparacion == android.example.wordlehelper.input.letterColor.BLACK && input[inputIndex].letter == letter)
+                        updatedList.remove(word)
+                    //   }
                 }
 
 
@@ -107,8 +116,7 @@ class myMethods {
             if (!word.contains(inputLetter.toString())) {
                 updatedList.remove(word)
                 println(word)
-            }
-            else {
+            } else {
                 word.lowercase().forEachIndexed() { index, letter ->
                     if (letter != inputLetter && posicion == index)
                         updatedList.remove(word)
@@ -126,23 +134,263 @@ class myMethods {
     ): MutableList<String> {
         val updatedList = wordList.toMutableList()
         for (word in wordList) {
-            if(!word.contains(inputLetter.toString())) updatedList.remove(word)
+            if (!word.contains(inputLetter.toString())) updatedList.remove(word)
 
-           /**var letterIsInWord = false
+            /**var letterIsInWord = false
             word.lowercase().forEachIndexed() { index, letter ->
-                if (letter == inputLetter) letterIsInWord = true
+            if (letter == inputLetter) letterIsInWord = true
             }
             if (!letterIsInWord) {
-                updatedList.remove(word)
-                letterIsInWord = false
+            updatedList.remove(word)
+            letterIsInWord = false
             }*/
         }
         return updatedList.sorted().toMutableList()
     }
 
+
+    fun letterPress(currentFocus: TextView, keyboardButton: TextView) {
+        val activeLetter = currentFocus as TextView
+        val parent = activeLetter.parent as LinearLayout
+        val activeLetterIndex = parent.indexOfChild(activeLetter)
+
+
+        if (keyboardButton.text != "ENTER" && keyboardButton.text != "DEL") {
+            if (activeLetter.text.toString() == "") {
+                val activeLetter = currentFocus as TextView
+                activeLetter.text = keyboardButton.text
+            }
+        }
+    }
+
+
+    fun deletePress(currentFocus: TextView, keyboardButton: TextView) {
+
+        if (keyboardButton.text == "DEL") {
+            val activeLetter = currentFocus as TextView
+            val parent = activeLetter.parent as LinearLayout
+            val activeLetterIndex = parent.indexOfChild(activeLetter)
+
+            if (activeLetterIndex != 0) {
+                val nextLetraActiva =
+                    parent.getChildAt(activeLetterIndex - 1) as TextView
+
+                if (activeLetterIndex != 4) {
+                    nextLetraActiva.text = ""
+                    nextLetraActiva.requestFocus()
+                } else {
+                    if (activeLetter.text.toString() != "") {
+                        activeLetter.text = ""
+                    } else {
+                        nextLetraActiva.text = ""
+                        nextLetraActiva.requestFocus()
+                    }
+                }
+            }
+        }
+    }
+
+
+    fun enterPress(
+        currentFocus: TextView,
+        keyboardButton: TextView,
+        wordList: MutableList<String>,
+        goalWord: String,
+        resources: Resources,
+        keyboardLayout: LinearLayout,
+        context: Context,
+        game: Activity
+    ) {//TODO
+        if (keyboardButton.text.toString() == "ENTER") {
+            val activeLetter = currentFocus as TextView
+            val parent = activeLetter.parent as LinearLayout
+            val activeLetterIndex = parent.indexOfChild(activeLetter)
+
+
+            val guessedWordLetters = mutableListOf<String>()
+
+            //Recoger palabra de las letras en la fila
+            var guessedWord: String
+            if (activeLetterIndex == 4) {
+                for (letter in 0 until parent.childCount) {
+                    val currentLetter = parent.getChildAt(letter) as TextView
+                    guessedWordLetters.add(currentLetter.text.toString().toLowerCase())
+                }
+                guessedWord = guessedWordLetters.joinToString("")
+
+                //Comprobar que la palabra introducida es valida
+                if (!wordList.contains(guessedWord)) println("la palabra $guessedWord no es válida")
+                else {
+                    //LA PALABRA ES VALIDA, LET'S GO!!!
+                    println("La palabra a adivinar es $goalWord \n Tu palabra introducida es $guessedWord y es valida")
+                    guessedWord.lowercase().forEachIndexed() { index, letter ->
+
+                        //VERDE
+                        if (guessedWord[index] == goalWord[index]) {
+                            val comparedLetter = parent.getChildAt(index) as TextView
+                            comparedLetter.setBackgroundColor(resources.getColor(R.color.verde))
+
+                            for (row in 0 until keyboardLayout.childCount) {
+                                val keyboardRow =
+                                    keyboardLayout.getChildAt(row) as LinearLayout
+
+                                for (button in 0 until keyboardRow.childCount) {
+                                    val keyboardButton =
+                                        keyboardRow.getChildAt(button) as Button
+                                    if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                        keyboardButton.setBackgroundColor(
+                                            resources.getColor(
+                                                R.color.verde
+                                            )
+                                        )
+                                }
+                            }
+
+                        }
+
+                        //AMARILLO
+                        else if (goalWord.contains(letter)) {
+                            val comparedLetter = parent.getChildAt(index) as TextView
+                            comparedLetter.setBackgroundColor(resources.getColor(R.color.amarillo))
+
+                            for (row in 0 until keyboardLayout.childCount) {
+                                val keyboardRow =
+                                    keyboardLayout.getChildAt(row) as LinearLayout
+
+                                for (button in 0 until keyboardRow.childCount) {
+                                    val keyboardButton =
+                                        keyboardRow.getChildAt(button) as Button
+                                    if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                        keyboardButton.setBackgroundColor(
+                                            resources.getColor(
+                                                R.color.amarillo
+                                            )
+                                        )
+                                }
+                            }
+                        }
+
+                        //NEGRO
+                        else if (!goalWord.contains(letter)) {
+                            val comparedLetter = parent.getChildAt(index) as TextView
+                            comparedLetter.setBackgroundColor(resources.getColor(R.color.negro))
+
+                            for (row in 0 until keyboardLayout.childCount) {
+                                val keyboardRow =
+                                    keyboardLayout.getChildAt(row) as LinearLayout
+
+                                for (button in 0 until keyboardRow.childCount) {
+                                    val keyboardButton =
+                                        keyboardRow.getChildAt(button) as Button
+                                    if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                        keyboardButton.setBackgroundColor(
+                                            resources.getColor(
+                                                R.color.negro
+                                            )
+                                        )
+                                }
+                            }
+                        }
+
+                    }
+
+
+                    val activeLetter = currentFocus as TextView
+                    val parent = activeLetter.parent as LinearLayout
+                    val parentOfParent = parent.parent as LinearLayout
+
+
+                    var indexOfNextLine = parentOfParent.indexOfChild(parent)
+                    if (parentOfParent.indexOfChild(parent) < 5) {
+                        /**HAS ACERTADO*/
+                        var correcta: Boolean = true
+                        for (i in 0 until parent.childCount) {
+                            var compare = parent.getChildAt(i) as TextView
+                            if (compare.text.toString()
+                                    .lowercase() != goalWord[i].toString()
+                            )
+                                correcta = false
+                        }
+                        if (correcta == true) {
+                            MaterialAlertDialogBuilder(context)
+                                // Add customization options here
+                                .setMessage("Enhorabuena! Has acertado!")
+
+                                .setPositiveButton("Atrás") { dialog, which ->
+                                    // Respond to negative button press
+                                }
+                                .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { dialog, which ->
+                                    // Respond to positive button press
+                                    val website = Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("https://dle.rae.es/${goalWord.toString()}")
+                                    )
+                                    context.startActivity(website)
+                                }
+                                .setNeutralButton("Nueva Partida") { dialog, which ->
+                                    // Respond to positive button press
+                                    game.finish();
+                                    val intent = Intent(game, game::class.java)
+                                    game.startActivity(intent);
+                                }
+
+                                .show()
+                        }
+
+                        /** NO HAS ACERTADO*/
+                        else {
+                            indexOfNextLine = parentOfParent.indexOfChild(parent) + 1
+
+                            val nextParent =
+                                parentOfParent.getChildAt(indexOfNextLine) as LinearLayout
+                            val nextActiveLetter = nextParent.getChildAt(0)
+                            nextActiveLetter.requestFocus()
+                        }
+                    }
+
+                    /** FIN DEL JUEGO */
+                    else {
+                        var correcta: Boolean = true
+                        for (i in 0 until parent.childCount) {
+                            var compare = parent.getChildAt(i) as TextView
+                            if (compare.text.toString()
+                                    .lowercase() != goalWord[i].toString()
+                            )
+                                correcta = false
+                        }
+                        if (correcta == false) {
+                            MaterialAlertDialogBuilder(context)
+                                // Add customization options here
+                                .setMessage("Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}")
+
+                                .setPositiveButton("Atrás") { dialog, which ->
+                                    // Respond to negative button press
+                                }
+                                .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { dialog, which ->
+                                    // Respond to positive button press
+                                    val website = Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("https://dle.rae.es/${goalWord.toString()}")
+                                    )
+                                    context.startActivity(website)
+                                }
+                                .setNeutralButton("Nueva Partida") { dialog, which ->
+                                    // Respond to positive button press
+                                    game.finish();
+                                    val intent = Intent(game, game::class.java)
+                                    game.startActivity(intent);
+                                }
+                                .show()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
-class input(val letter:Char?, val color: letterColor) {
+class input(val letter: Char?, val color: letterColor) {
     enum class letterColor {
         GREEN, YELLOW, BLACK, GREY
     }
