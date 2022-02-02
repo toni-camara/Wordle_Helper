@@ -4,17 +4,19 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
 
-class code : AppCompatActivity() {
+class Code : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code)
-    }
-    fun github(view: View){
-        val url = "https://github.com/toni-camara/Wordle_Helper"
-        val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(url)
-        startActivity(i)
+
+        //READ CODE BUTTON PRESS
+        val readCode = findViewById<Button>(R.id.codeBtn)
+        readCode.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse("https://github.com/toni-camara/Wordle_Helper")
+            startActivity(i)
+        }
     }
 }

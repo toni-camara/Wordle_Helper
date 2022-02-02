@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WordleHelper">
         <activity
-            android:name=".learn"
+            android:name=".Learn"
             android:exported="false" />
         <activity
-            android:name=".code"
+            android:name=".Code"
             android:exported="false" />
         <activity
             android:name=".search"
             android:exported="false" />
         <activity
-            android:name=".game"
+            android:name=".Game"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

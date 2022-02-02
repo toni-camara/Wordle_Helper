@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483800922256",
+    "project_id": "unlimitedwords-654c8",
+    "storage_bucket": "unlimitedwords-654c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483800922256:android:e17cd6334baca543e74015",
+        "android_client_info": {
+          "package_name": "android.example.wordlehelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483800922256-kesleiskusb0ql3h0cnebfgajctggq45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2HeG8YmfStKQ_WMbZ1jGah1YwqNLESkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483800922256-kesleiskusb0ql3h0cnebfgajctggq45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

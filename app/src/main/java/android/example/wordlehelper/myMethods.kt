@@ -20,11 +20,6 @@ import java.io.ObjectInput
 
 class myMethods {
 
-    /** returns 'True' if the value is odd, and 'False' if the value is even*/
-    fun isOdd(value: Int): Boolean {
-        return value and 0x01 != 0
-    }
-
     /** This method draws the list of words */
     fun drawWordList(filteredList: List<String>, Activity: Activity) {
         Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).removeAllViews()
@@ -50,7 +45,6 @@ class myMethods {
 
         }
     }
-
 
     /** This method takes a list of words from a file and stores them into a list */
     fun readWordsFromFile(context: Context): List<String> {
@@ -78,8 +72,6 @@ class myMethods {
         for (word in wordList) {
             word.lowercase().forEachIndexed() { index, letter ->
                 input.forEachIndexed() { inputIndex, inputLetter ->
-                    //if (!word.contains(inputLetter.toString())) updatedList.remove(word)
-                    //else {
 
                     // Si la letra que toca corresponde a una verde en el input
                     val comparacion = input[inputIndex].color

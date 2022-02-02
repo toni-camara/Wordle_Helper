@@ -36,7 +36,6 @@
             android:backgroundTint="@color/design_default_color_primary"
             app:icon="@drawable/link_icon"
             android:text="Leer en Github"
-            android:onClick="github"
             android:textColor="@color/white" />
 
         <Button
