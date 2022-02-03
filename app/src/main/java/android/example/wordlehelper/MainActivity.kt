@@ -2,6 +2,7 @@ package android.example.wordlehelper
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,30 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
+
+@IgnoreExtraProperties
+data class Word(
+    val wordId: String? = null,
+    val timesReviewed: Long? = null,
+    val rating: Float? = null
+) {
+    // Null default values create a no-argument default constructor, which is needed
+    // for deserialization from a DataSnapshot.
+}
+
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         //BOTTOM SHEET
         val modalBottomSheet = ModalBottomSheet()
@@ -59,8 +78,6 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
 
         val profileBtn = view.findViewById<Button>(R.id.profileBtn)
         profileBtn.setOnClickListener {
-            val intent = Intent(activity, Game::class.java)
-            startActivity(intent)
         }
 
         //CODE BUTTON
@@ -76,3 +93,4 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
     }
 
 }
+

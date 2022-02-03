@@ -9,16 +9,55 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
 class Game : AppCompatActivity() {
+
+    /**SET UP DATABASE*/
+    val database =
+        Firebase.database("https://unlimitedwords-654c8-default-rtdb.europe-west1.firebasedatabase.app/").reference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        /** EMPIEZA AQUI*/
         val wordList = myMethods().readWordsFromFile(this@Game).toMutableList()
         val randomIndex = Random.nextInt(wordList.size)
         val goalWord = wordList[randomIndex]
+
+        /** DATABASE TEST*/
+
+        val listaPalabras = mutableListOf<String?>("arbol", "cerca", "salir", "corzo", "calor")
+
+        listaPalabras.forEach() { number ->
+            println(number)
+            val timesReviewed = 0
+            val rating = 5.1f
+            database.child("wordList").child(number.toString()).child("timesReviewed").setValue(timesReviewed)
+            database.child("wordList").child(number.toString()).child("rating").setValue(rating)
+        }
+
+
+        var listaOnline = mutableListOf<String>()
+
+        database.child("wordList").get().addOnSuccessListener {
+            var word: String =""
+            it.children.forEach(){ currentWord ->
+                word = currentWord.key as String
+                listaOnline.add(word)
+            }
+        }
+
+
+
+        /** END OF DATABASE TEST*/
+
+
+
+
 
 
         /**HINT BUTTON*/
