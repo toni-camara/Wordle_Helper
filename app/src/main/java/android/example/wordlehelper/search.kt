@@ -12,17 +12,44 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import kotlin.random.Random
 
 
 class search : AppCompatActivity() {
+
+    /**SET UP DATABASE*/
+    val database =
+        Firebase.database("https://unlimitedwords-654c8-default-rtdb.europe-west1.firebasedatabase.app/").reference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
         var noResultsListed: List<String> = listOf("There's no coincidence")
         var filteredList: List<String> = listOf()
+
+        /**
         var wordList: MutableList<String> = mutableListOf()
         wordList = myMethods().readWordsFromFile(this@search).toMutableList()
+*/
+
+        /** LOAD LIST FROM DATABASE*/
+
+        var wordList = mutableListOf<String>()
+        var randomIndex: Int = 0
+
+
+        database.child("wordList").get().addOnSuccessListener {
+            var word: String = ""
+            it.children.forEach() { currentWord ->
+                word = currentWord.key as String
+                wordList.add(word)
+
+            }
+        }
+
 
         /** Click on RESET LIST Button*/
         val showListButton = findViewById<Button>(R.id.showListBtn)

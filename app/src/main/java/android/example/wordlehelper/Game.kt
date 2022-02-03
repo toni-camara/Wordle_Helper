@@ -61,8 +61,11 @@ val wordList = myMethods().readWordsFromFile(this@Game).toMutableList()
                 // Add customization options here
                 .setMessage("La palabra era ${goalWord.uppercase()}")
 
-
-                .setNegativeButton("atras") { dialog, which ->
+                .setPositiveButton("Borrar Palabra") { dialog, which ->
+                    // Respond to negative button press
+                    database.child("wordList").child(goalWord).removeValue()
+                }
+                .setNegativeButton("Atras") { dialog, which ->
                     // Respond to negative button press
                 }
                 .show()
