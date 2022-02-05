@@ -1,6 +1,11 @@
 package android.example.wordlehelper
 
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -13,6 +18,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
+
 class Game : AppCompatActivity() {
 
     /**SET UP DATABASE*/
@@ -24,9 +30,8 @@ class Game : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
 
-
         /** LOAD LIST FROM DATABASE*/
-
+/*
         var wordList = mutableListOf<String>()
         var randomIndex: Int = 0
         var goalWord: String = ""
@@ -40,23 +45,35 @@ class Game : AppCompatActivity() {
                 goalWord = wordList[randomIndex]
             }
         }
+*/
+        val wordList = myMethods().readWordsFromFile(this) as MutableList<String>
+        val randomIndex = Random.nextInt(wordList.size)
+        val goalWord = wordList[randomIndex]
+        println("La palabra objetivo es: $goalWord")
 
-
-        /**HINT BUTTON*/
-        val hintButton = findViewById<View>(R.id.hintBtn)
-        hintButton.setOnClickListener {
+        /**GIVE UP BUTTON*/
+        val giveUpButton = findViewById<View>(R.id.giveUpBtn)
+        giveUpButton.setOnClickListener {
             MaterialAlertDialogBuilder(this)
-                // Add customization options here
-                .setMessage("La palabra era ${goalWord.uppercase()}")
+                .setMessage("Seguro que quieres abandonar?")
 
-               /*
-                .setPositiveButton("Borrar Palabra") { dialog, which ->
-                    // Respond to negative button press
-                    database.child("wordList").child(goalWord).removeValue()
+                .setNegativeButton("Cancelar") { dialog, which ->
                 }
-                  */
-                .setNegativeButton("Atras") { dialog, which ->
-                    // Respond to negative button press
+
+                .setPositiveButton("Abandonar") { dialog, which ->
+                    MaterialAlertDialogBuilder(this)
+                        .setMessage("La palabra era ${goalWord.uppercase()}")
+
+                        .setNegativeButton("Salir a Menu Principal") { dialog, which ->
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        .setPositiveButton("Jugar otra vez") { dialog, which ->
+                            finish();
+                            val intent = Intent(this, Game::class.java)
+                            startActivity(intent)
+                        }
+                        .show()
                 }
                 .show()
         }
@@ -108,6 +125,15 @@ class Game : AppCompatActivity() {
                 val keyboardButton = keyboardRow.getChildAt(button) as Button
 
                 keyboardButton.setOnClickListener {
+
+                    //VIBRACION DE TECLA
+                    val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        v.vibrate(
+                            VibrationEffect.createOneShot(
+                                50,
+                                VibrationEffect.DEFAULT_AMPLITUDE
+                            )
+                        )
 
                     //TECLAS DE LETRA
                     myMethods().letterPress(currentFocus as TextView, keyboardButton)

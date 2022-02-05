@@ -3,19 +3,15 @@ package android.example.wordlehelper
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.getIntent
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
-import android.view.FocusFinder
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.IOException
-import java.io.ObjectInput
 
 
 class myMethods {
@@ -192,29 +188,41 @@ class myMethods {
         keyboardLayout: LinearLayout,
         context: Context,
         game: Activity
-    ) {//TODO
+    ) {
         if (keyboardButton.text.toString() == "ENTER") {
             val activeLetter = currentFocus as TextView
             val parent = activeLetter.parent as LinearLayout
             val activeLetterIndex = parent.indexOfChild(activeLetter)
 
-
-            val guessedWordLetters = mutableListOf<String>()
-
             //Recoger palabra de las letras en la fila
             var guessedWord: String
+            val guessedWordLetters = mutableListOf<String>()
+
+            val timesUsed = mutableListOf<UsedLetter>()
+
             if (activeLetterIndex == 4) {
-                for (letter in 0 until parent.childCount) {
-                    val currentLetter = parent.getChildAt(letter) as TextView
+                for (letterPosition in 0 until parent.childCount) {
+                    val currentLetter = parent.getChildAt(letterPosition) as TextView
                     guessedWordLetters.add(currentLetter.text.toString().toLowerCase())
+                   //TODO get number of times letter is used
+                    val buffer = UsedLetter(currentLetter.text.toString(), 0)
+                    for (index in 0 until timesUsed.size) {
+                            timesUsed.add(buffer)
+                            timesUsed[letterPosition].timesUsed++
+                    }
                 }
                 guessedWord = guessedWordLetters.joinToString("")
 
+                for (index in 0 until timesUsed.size) {
+                    println("La letra ${timesUsed[index].letter} se ha usado ${timesUsed[index].timesUsed} veces")
+                }
+
+
                 //Comprobar que la palabra introducida es valida
-                if (!wordList.contains(guessedWord)) println("la palabra $guessedWord no es válida")
-                else {
+                if (!wordList.contains(guessedWord)) {
+                    //TODO Word invalid
+                } else {
                     //LA PALABRA ES VALIDA, LET'S GO!!!
-                    println("La palabra a adivinar es $goalWord \n Tu palabra introducida es $guessedWord y es valida")
                     guessedWord.lowercase().forEachIndexed() { index, letter ->
 
                         //VERDE
@@ -382,6 +390,16 @@ class myMethods {
 
 }
 
+
+class input(val letter: Char?, val color: letterColor) {
+    enum class letterColor {
+        GREEN, YELLOW, BLACK, GREY
+    }
+}
+
+class UsedLetter(var letter: String, var timesUsed: Int = 0)
+
+
 /** UPLOAD TXT TO ONLINE DATABASE*/
 /*
 val goalWord: String = "goalw"
@@ -395,8 +413,19 @@ val wordList = myMethods().readWordsFromFile(this@Game).toMutableList()
         }
 */
 
-class input(val letter: Char?, val color: letterColor) {
-    enum class letterColor {
-        GREEN, YELLOW, BLACK, GREY
+/** LOAD LIST FROM DATABASE*/
+/*
+var wordList = mutableListOf<String>()
+var randomIndex: Int = 0
+var goalWord: String = ""
+
+database.child("wordList").get().addOnSuccessListener {
+    var word: String = ""
+    it.children.forEach() { currentWord ->
+        word = currentWord.key as String
+        wordList.add(word)
+        randomIndex = Random.nextInt(wordList.size)
+        goalWord = wordList[randomIndex]
     }
 }
+ */

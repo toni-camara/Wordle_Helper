@@ -316,7 +316,7 @@
 
 
     <Button
-        android:id="@+id/hintBtn"
+        android:id="@+id/giveUpBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -325,7 +325,7 @@
         app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
         app:strokeColor="@color/design_default_color_primary"
         app:strokeWidth="1dp"
-        android:text="@string/cheat_button" />
+        android:text="@string/giveUp" />
 
 
     // KEYBOARD LAYOUT
