@@ -7,9 +7,12 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.IOException
 

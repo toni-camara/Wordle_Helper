@@ -1,7 +1,10 @@
 package android.example.wordlehelper
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +47,15 @@ class MainActivity : AppCompatActivity() {
         val bottomSheetButton = findViewById<Button>(R.id.bottomSheetExpandButton)
         bottomSheetButton.setOnClickListener {
             modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
+
+            //VIBRACION DE TECLA
+            val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(
+                VibrationEffect.createOneShot(
+                    50,
+                    VibrationEffect.DEFAULT_AMPLITUDE
+                )
+            )
         }
 
         //PLAY BUTTON
@@ -51,6 +63,14 @@ class MainActivity : AppCompatActivity() {
         playButton.setOnClickListener {
             val intent = Intent(this, Game::class.java)
             startActivity(intent)
+            //VIBRACION DE TECLA
+            val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(
+                VibrationEffect.createOneShot(
+                    50,
+                    VibrationEffect.DEFAULT_AMPLITUDE
+                )
+            )
         }
 
         //SEARCH BUTTON
@@ -58,6 +78,14 @@ class MainActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
             val intent = Intent(this, search::class.java)
             startActivity(intent)
+            //VIBRACION DE TECLA
+            val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(
+                VibrationEffect.createOneShot(
+                    50,
+                    VibrationEffect.DEFAULT_AMPLITUDE
+                )
+            )
         }
 
         //LEARN BUTTON
@@ -65,6 +93,14 @@ class MainActivity : AppCompatActivity() {
         learnButton.setOnClickListener {
             val intent = Intent(this, Learn::class.java)
             startActivity(intent)
+            //VIBRACION DE TECLA
+            val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(
+                VibrationEffect.createOneShot(
+                    50,
+                    VibrationEffect.DEFAULT_AMPLITUDE
+                )
+            )
         }
 
     }
@@ -89,6 +125,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
         codeButton.setOnClickListener {
             val intent = Intent(activity, Code::class.java)
             startActivity(intent)
+
         }
     }
 
