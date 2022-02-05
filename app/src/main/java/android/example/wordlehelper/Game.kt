@@ -25,18 +25,6 @@ class Game : AppCompatActivity() {
 
 
 
-/*
-/** UPLOAD TXT TO ONLINE DATABASE*/
-val wordList = myMethods().readWordsFromFile(this@Game).toMutableList()
-        wordList.forEach() { number ->
-            println(number)
-            val timesReviewed = 0
-            val rating = 5.1f
-            database.child("wordList").child(number.toString()).child("timesReviewed").setValue(timesReviewed)
-            database.child("wordList").child(number.toString()).child("rating").setValue(rating)
-        }
-*/
-
         /** LOAD LIST FROM DATABASE*/
 
         var wordList = mutableListOf<String>()
@@ -61,10 +49,12 @@ val wordList = myMethods().readWordsFromFile(this@Game).toMutableList()
                 // Add customization options here
                 .setMessage("La palabra era ${goalWord.uppercase()}")
 
+               /*
                 .setPositiveButton("Borrar Palabra") { dialog, which ->
                     // Respond to negative button press
                     database.child("wordList").child(goalWord).removeValue()
                 }
+                  */
                 .setNegativeButton("Atras") { dialog, which ->
                     // Respond to negative button press
                 }

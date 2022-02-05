@@ -382,6 +382,19 @@ class myMethods {
 
 }
 
+/** UPLOAD TXT TO ONLINE DATABASE*/
+/*
+val goalWord: String = "goalw"
+val wordList = myMethods().readWordsFromFile(this@Game).toMutableList()
+        wordList.forEach() { number ->
+            println(number)
+            val timesReviewed = 0
+            val rating = 5.1f
+            database.child("wordList").child(number.toString()).child("timesReviewed").setValue(timesReviewed)
+            database.child("wordList").child(number.toString()).child("rating").setValue(rating)
+        }
+*/
+
 class input(val letter: Char?, val color: letterColor) {
     enum class letterColor {
         GREEN, YELLOW, BLACK, GREY
