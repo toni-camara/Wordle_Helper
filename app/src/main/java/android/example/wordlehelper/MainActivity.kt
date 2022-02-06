@@ -149,7 +149,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             val duration = Toast.LENGTH_SHORT
 
             val toast = Toast.makeText(requireContext(), text, duration)
-            toast.setGravity(Gravity.CENTER, 0,0)
+            //toast.setGravity(Gravity.CENTER, 0,0)
             toast.show()
 
 

@@ -320,10 +320,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/design_default_color_primary"
-        android:backgroundTint="@color/white"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
-        app:strokeColor="@color/design_default_color_primary"
+        style="@style/OrangeButton"
+        app:strokeColor="@color/orange"
         app:strokeWidth="1dp"
         android:text="@string/giveUp" />
 
@@ -334,7 +332,7 @@
         android:id="@+id/keyboardContainerLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginTop="0dp"
         android:background="@color/background"
         android:orientation="vertical"
