@@ -46,6 +46,7 @@ class Game : AppCompatActivity() {
             }
         }
 */
+        /** LOAD LIST FROM FILE*/
         val wordList = myMethods().readWordsFromFile(this) as MutableList<String>
         val randomIndex = Random.nextInt(wordList.size)
         val goalWord = wordList[randomIndex]
@@ -78,7 +79,7 @@ class Game : AppCompatActivity() {
                 .show()
         }
 
-        /** INITIAL ACTIVE WORD TEXTVIEWS */
+        /** SET INITIAL FOCUS ON FIRST TEXTVIEW*/
         val letraActiva = findViewById<View>(R.id.Guess11) as TextView
         letraActiva.requestFocus()
 

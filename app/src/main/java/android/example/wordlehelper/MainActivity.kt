@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        //BOTTOM SHEET
+        /** BOTTOM SHEET*/
         val modalBottomSheet = ModalBottomSheet()
         val bottomSheetButton = findViewById<Button>(R.id.bottomSheetExpandButton)
         bottomSheetButton.setOnClickListener {
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        //PLAY BUTTON
+        /**PLAY BUTTON*/
         val playButton = findViewById<Button>(R.id.playBtn)
         playButton.setOnClickListener {
             val intent = Intent(this, Game::class.java)
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        //SEARCH BUTTON
+        /**SEARCH BUTTON*/
         val searchButton = findViewById<Button>(R.id.searchBtn)
         searchButton.setOnClickListener {
             val intent = Intent(this, search::class.java)
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        //LEARN BUTTON
+        /**LEARN BUTTON*/
         val learnButton = findViewById<Button>(R.id.learnBtn)
         learnButton.setOnClickListener {
             val intent = Intent(this, Learn::class.java)
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //RANKINGS BUTTON
+        /**RANKINGS BUTTON*/
         val rankingsButton = findViewById<Button>(R.id.rankingsBtn)
         rankingsButton.setOnClickListener {
             val text = "Rankings not implemented yet!"
@@ -139,28 +139,28 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //PROFILE BUTTON
+        /**PROFILE BUTTON*/
         val profileBtn = view.findViewById<Button>(R.id.profileBtn)
         profileBtn.setOnClickListener {
 
             //TODO SHOW TOAST - LEARN HOW TO GET CONTEXT
-            /*
+
             val text = "Rankings not implemented yet!"
             val duration = Toast.LENGTH_SHORT
 
-            val toast = Toast.makeText(it.context, text, duration)
-            toast.setGravity(Gravity.CENTER, 0,300)
+            val toast = Toast.makeText(requireContext(), text, duration)
+            toast.setGravity(Gravity.CENTER, 0,0)
             toast.show()
-            */
+
 
         }
 
-        //SETTINGS BUTTON
+        /**SETTINGS BUTTON*/
         val settingsBtn = view.findViewById<Button>(R.id.settingsBtn)
         profileBtn.setOnClickListener {
         }
 
-        //CODE BUTTON
+        /**CODE BUTTON*/
         val codeButton = view.findViewById<Button>(R.id.codeBtn)
         codeButton.setOnClickListener {
             val intent = Intent(activity, Code::class.java)
