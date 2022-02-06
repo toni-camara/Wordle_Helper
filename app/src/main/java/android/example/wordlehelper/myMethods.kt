@@ -9,11 +9,15 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 
 
@@ -207,11 +211,11 @@ class myMethods {
                 for (letterPosition in 0 until parent.childCount) {
                     val currentLetter = parent.getChildAt(letterPosition) as TextView
                     guessedWordLetters.add(currentLetter.text.toString().toLowerCase())
-                   //TODO get number of times letter is used
+                    //TODO get number of times letter is used
                     val buffer = UsedLetter(currentLetter.text.toString(), 0)
                     for (index in 0 until timesUsed.size) {
-                            timesUsed.add(buffer)
-                            timesUsed[letterPosition].timesUsed++
+                        timesUsed.add(buffer)
+                        timesUsed[letterPosition].timesUsed++
                     }
                 }
                 guessedWord = guessedWordLetters.joinToString("")
@@ -224,6 +228,12 @@ class myMethods {
                 //Comprobar que la palabra introducida es valida
                 if (!wordList.contains(guessedWord)) {
                     //TODO Word invalid
+
+                    val text = "La palabra no es válida"
+                    val duration = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(game, text, duration)
+                    toast.setGravity(Gravity.CENTER, 0, 130)
+                    toast.show()
                 } else {
                     //LA PALABRA ES VALIDA, LET'S GO!!!
                     guessedWord.lowercase().forEachIndexed() { index, letter ->

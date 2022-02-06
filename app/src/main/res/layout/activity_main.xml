@@ -65,8 +65,7 @@
         app:icon="@drawable/baseline_keyboard_double_arrow_up_black_36"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/orange"
-         />
+        app:iconTint="@color/orange" />
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

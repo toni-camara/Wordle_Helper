@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -103,6 +105,27 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+
+        //RANKINGS BUTTON
+        val rankingsButton = findViewById<Button>(R.id.rankingsBtn)
+        rankingsButton.setOnClickListener {
+            val text = "Rankings not implemented yet!"
+            val duration = Toast.LENGTH_SHORT
+
+            val toast = Toast.makeText(applicationContext, text, duration)
+            toast.setGravity(Gravity.CENTER, 0,300)
+            toast.show()
+
+            //VIBRACION DE TECLA
+            val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(
+                VibrationEffect.createOneShot(
+                    50,
+                    VibrationEffect.DEFAULT_AMPLITUDE
+                )
+            )
+        }
+
     }
 }
 
@@ -116,7 +139,24 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //PROFILE BUTTON
         val profileBtn = view.findViewById<Button>(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+
+            //TODO SHOW TOAST - LEARN HOW TO GET CONTEXT
+            /*
+            val text = "Rankings not implemented yet!"
+            val duration = Toast.LENGTH_SHORT
+
+            val toast = Toast.makeText(it.context, text, duration)
+            toast.setGravity(Gravity.CENTER, 0,300)
+            toast.show()
+            */
+
+        }
+
+        //SETTINGS BUTTON
+        val settingsBtn = view.findViewById<Button>(R.id.settingsBtn)
         profileBtn.setOnClickListener {
         }
 
