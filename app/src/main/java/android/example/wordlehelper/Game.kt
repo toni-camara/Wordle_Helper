@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.io.File
 import kotlin.random.Random
 
 
@@ -55,6 +56,22 @@ class Game : AppCompatActivity() {
         /**GIVE UP BUTTON*/
         val giveUpButton = findViewById<View>(R.id.giveUpBtn)
         giveUpButton.setOnClickListener {
+
+            val statsFile = File(this.filesDir,"statsFile.json")
+            if(statsFile.exists()) {
+                var stats = Stats().readStatsFile(statsFile)
+                stats.timesPlayed++
+                stats.timesGivenUp ++
+                Stats().writeStatsFile(statsFile, stats)
+            }
+            else {
+                var data: UserStats = UserStats()
+                data.timesPlayed = 1
+                data.timesGivenUp = 1
+                Stats().writeStatsFile(statsFile, data)
+            }
+
+            //DIALOG
             MaterialAlertDialogBuilder(this)
                 .setMessage("Seguro que quieres abandonar?")
 

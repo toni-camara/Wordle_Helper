@@ -18,10 +18,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import java.io.File
 import java.io.IOException
 
 
 class myMethods {
+
 
     /** This method takes a list of words from a file and stores them into a list */
     fun readWordsFromFile(context: Context): List<String> {
@@ -297,13 +300,32 @@ class myMethods {
                                 correcta = false
                         }
                         if (correcta == true) {
+
+                            val statsFile = File(context.filesDir,"statsFile.json")
+                            if(statsFile.exists()) {
+                                var stats = Stats().readStatsFile(statsFile)
+                                stats.averageTries =
+                                    (((stats.timesPlayed * stats.averageTries!!) + (parentOfParent.indexOfChild(
+                                        parent
+                                    ) + 1)) / (stats.timesPlayed + 1))
+                                stats.timesPlayed++
+                                Stats().writeStatsFile(statsFile, stats)
+                            }
+                            else {
+                                var data: UserStats = UserStats()
+                                data.timesPlayed = 1
+                                data.averageTries = (parentOfParent.indexOfChild(parent) + 1).toFloat()
+                                data.timesGivenUp = 0
+                                Stats().writeStatsFile(statsFile, data)
+                            }
+
+                            // DIALOG
                             MaterialAlertDialogBuilder(context)
-                                // Add customization options here
                                 .setMessage("Enhorabuena! Has acertado!")
 
                                 .setPositiveButton("Atrás") { dialog, which ->
-                                    // Respond to negative button press
                                 }
+
                                 .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { dialog, which ->
                                     // Respond to positive button press
                                     val website = Intent(
@@ -312,6 +334,7 @@ class myMethods {
                                     )
                                     context.startActivity(website)
                                 }
+
                                 .setNeutralButton("Nueva Partida") { dialog, which ->
                                     // Respond to positive button press
                                     game.finish();
@@ -344,6 +367,26 @@ class myMethods {
                                 correcta = false
                         }
                         if (correcta == false) {
+
+                            val statsFile = File(context.filesDir,"statsFile.json")
+                            if(statsFile.exists()) {
+                                var stats = Stats().readStatsFile(statsFile)
+                                stats.averageTries =
+                                    (((stats.timesPlayed * stats.averageTries!!) + (parentOfParent.indexOfChild(
+                                        parent
+                                    ) + 1)) / (stats.timesPlayed + 1))
+                                stats.timesPlayed++
+                                Stats().writeStatsFile(statsFile, stats)
+                            }
+                            else {
+                                var data: UserStats = UserStats()
+                                data.timesPlayed = 1
+                                data.averageTries = (parentOfParent.indexOfChild(parent) + 1).toFloat()
+                                data.timesGivenUp = 0
+                                Stats().writeStatsFile(statsFile, data)
+                            }
+
+                            //DIALOG
                             MaterialAlertDialogBuilder(context)
                                 // Add customization options here
                                 .setMessage("Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}")
@@ -372,6 +415,7 @@ class myMethods {
             }
         }
     }
+
 
 }
 
