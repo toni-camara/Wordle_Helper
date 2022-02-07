@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.example.wordlehelper">
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 
     <application
@@ -19,7 +19,7 @@
             android:name=".Code"
             android:exported="false" />
         <activity
-            android:name=".search"
+            android:name=".Stats"
             android:exported="false" />
         <activity
             android:name=".Game"

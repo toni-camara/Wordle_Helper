@@ -116,7 +116,7 @@ class Game : AppCompatActivity() {
             }
         }
 
-        /** KEYBOARD BUTTONS FUNCTIONS */
+        /** KEYBOARD BUTTONS LISTENERS */
         val keyboardLayout = findViewById<LinearLayout>(R.id.keyboardContainerLayout)
 
         for (row in 0 until keyboardLayout.childCount) {
@@ -136,7 +136,7 @@ class Game : AppCompatActivity() {
                             )
                         )
 
-                    //TECLAS DE LETRA
+                    //LETTER KEYS
                     myMethods().letterPress(currentFocus as TextView, keyboardButton)
 
                     //TECLA BORRAR

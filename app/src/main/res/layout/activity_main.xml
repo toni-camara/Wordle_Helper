@@ -33,16 +33,11 @@
             android:text="@string/play_button"
             app:icon="@drawable/play_icon" />
 
-        <Button
-            android:id="@+id/searchBtn"
-            style="@style/BlueButton"
-            android:text="@string/search_button"
-            app:icon="@drawable/search_icon" />
 
         <Button
-            android:id="@+id/rankingsBtn"
+            android:id="@+id/statsBtn"
             style="@style/OrangeButton"
-            android:text="Rankings"
+            android:text="Estadísticas"
             app:icon="@drawable/baseline_emoji_events_black_24" />
 
         <Button
@@ -54,36 +49,15 @@
 
     </LinearLayout>
 
-
     <Button
-        android:id="@+id/bottomSheetExpandButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/codeBtn"
+        style="@style/BlueButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        app:icon="@drawable/baseline_keyboard_double_arrow_up_black_36"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@color/orange" />
+        android:layout_marginHorizontal="70dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/code_button"
+        app:icon="@drawable/code_icon" />
 
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <FrameLayout
-            android:id="@+id/standard_bottom_sheet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-            <!-- Bottom sheet contents. -->
-
-
-        </FrameLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </RelativeLayout>

@@ -15,15 +15,6 @@
         android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:backgroundTint="@color/white"
-            android:padding="8dp"
-            app:icon="@drawable/outline_info_black_24"
-            app:iconTint="@color/grisOscuro" />
-
         <TextView
             android:id="@+id/gameHeader"
             android:layout_width="wrap_content"

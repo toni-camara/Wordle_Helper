@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/ic_launcher_foreground"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -16,37 +16,27 @@
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-light"
         android:text="ABOUT THE CODE"
+        android:textColor="@color/white"
         android:textSize="30sp" />
 
     <LinearLayout
-        android:layout_width="200sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/codeHeader"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="70dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingHorizontal="20sp">
+       >
 
         <Button
             android:id="@+id/githubBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/GreenButton"
             android:layout_marginTop="50dp"
-            android:backgroundTint="@color/design_default_color_primary"
-            app:icon="@drawable/link_icon"
-            android:text="Leer en Github"
-            android:textColor="@color/white" />
+            android:text="READ ON GITHUB"
+            app:icon="@drawable/link_icon" />
 
-        <Button
-            android:id="@+id/aboutBtn"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="match_parent"
-            app:icon="@drawable/about_icon"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/white"
-            android:text="Acerca de" />
 
     </LinearLayout>
 

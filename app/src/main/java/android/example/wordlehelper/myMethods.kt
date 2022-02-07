@@ -23,32 +23,6 @@ import java.io.IOException
 
 class myMethods {
 
-    /** This method draws the list of words */
-    fun drawWordList(filteredList: List<String>, Activity: Activity) {
-        Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).removeAllViews()
-        Activity.findViewById<LinearLayout>(R.id.verticalWordsCenter).removeAllViews()
-        Activity.findViewById<LinearLayout>(R.id.verticalWordsRight).removeAllViews()
-
-        filteredList.forEachIndexed() { index, word ->
-            // Word list settings
-            val vistaNueva = TextView(Activity)
-            vistaNueva.textSize = 20f
-            vistaNueva.text = word.uppercase()
-            vistaNueva.setTextColor(Color.parseColor("#6746c3"))
-            val typeface =
-                Typeface.SANS_SERIF//createFromAsset(applicationContext.assets, "sans-serif-light")
-            vistaNueva.setTypeface(typeface)
-
-            //Word list printing
-            if ((index + 1).mod(3) < 0.4) {
-                Activity.findViewById<LinearLayout>(R.id.verticalWordsRight).addView(vistaNueva)
-            } else if ((index + 1).mod(3) > 0.4 && index.mod(3) < 1) {
-                Activity.findViewById<LinearLayout>(R.id.verticalWordsLeft).addView(vistaNueva)
-            } else Activity.findViewById<LinearLayout>(R.id.verticalWordsCenter).addView(vistaNueva)
-
-        }
-    }
-
     /** This method takes a list of words from a file and stores them into a list */
     fun readWordsFromFile(context: Context): List<String> {
         var string = ""
@@ -227,8 +201,6 @@ class myMethods {
 
                 //Comprobar que la palabra introducida es valida
                 if (!wordList.contains(guessedWord)) {
-                    //TODO Word invalid
-
                     val text = "La palabra no es válida"
                     val duration = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(game, text, duration)
