@@ -34,7 +34,7 @@
             android:id="@+id/githubBtn"
             style="@style/GreenButton"
             android:layout_marginTop="50dp"
-            android:text="READ ON GITHUB"
+            android:text="GITHUB"
             app:icon="@drawable/link_icon" />
 
 
