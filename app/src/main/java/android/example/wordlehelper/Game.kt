@@ -57,19 +57,6 @@ class Game : AppCompatActivity() {
         val giveUpButton = findViewById<View>(R.id.giveUpBtn)
         giveUpButton.setOnClickListener {
 
-            val statsFile = File(this.filesDir,"statsFile.json")
-            if(statsFile.exists()) {
-                var stats = Stats().readStatsFile(statsFile)
-                stats.timesPlayed++
-                stats.timesGivenUp ++
-                Stats().writeStatsFile(statsFile, stats)
-            }
-            else {
-                var data: UserStats = UserStats()
-                data.timesPlayed = 1
-                data.timesGivenUp = 1
-                Stats().writeStatsFile(statsFile, data)
-            }
 
             //DIALOG
             MaterialAlertDialogBuilder(this)
@@ -79,6 +66,21 @@ class Game : AppCompatActivity() {
                 }
 
                 .setPositiveButton("Abandonar") { dialog, which ->
+                    val statsFile = File(this.filesDir,"statsFile.json")
+                    if(statsFile.exists()) {
+                        var stats = Stats().readStatsFile(statsFile)
+                        stats.timesPlayed++
+                        stats.timesGivenUp ++
+                        Stats().writeStatsFile(statsFile, stats)
+                    }
+                    else {
+                        var data: UserStats = UserStats()
+                        data.timesPlayed = 1
+                        data.timesGivenUp = 1
+                        data.timesWon = 0
+                        Stats().writeStatsFile(statsFile, data)
+                    }
+
                     MaterialAlertDialogBuilder(this)
                         .setMessage("La palabra era ${goalWord.uppercase()}")
 

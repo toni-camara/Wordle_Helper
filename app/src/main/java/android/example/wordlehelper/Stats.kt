@@ -19,15 +19,14 @@ class Stats : AppCompatActivity() {
         var gamesPlayed = findViewById<TextView>(R.id.gamesPlayedView)
         var averageTries = findViewById<TextView>(R.id.averageTriesView)
         var timesGivenUp = findViewById<TextView>(R.id.timesGivenUpView)
+        var timesWon = findViewById<TextView>(R.id.timesWonView)
 
         val statsFile = File(this.filesDir,"statsFile.json")
         if(!statsFile.exists()) {
-            var data: UserStats = UserStats()
-            writeStatsFile(statsFile, data)
-
-            gamesPlayed.text = data.timesPlayed.toString()
+            gamesPlayed.text = "0"
             averageTries.text = "N/A"
-            timesGivenUp.text = data.timesGivenUp.toString()
+            timesGivenUp.text = "0"
+            timesWon.text = "0"
         }
 
         else{
@@ -36,6 +35,7 @@ class Stats : AppCompatActivity() {
             gamesPlayed.text = data.timesPlayed.toString()
             averageTries.text = df.format(data.averageTries).toString()
             timesGivenUp.text = data.timesGivenUp.toString()
+            timesWon.text = data.timesWon.toString()
         }
 
 
@@ -44,7 +44,6 @@ class Stats : AppCompatActivity() {
     fun readStatsFile(File: File): UserStats{
         var string: String
         string = File.readText()
-        println("Tu cadena es $string")
         val dataBuffer = Gson().fromJson<UserStats>(string, UserStats::class.java)
         return dataBuffer
     }
@@ -59,6 +58,7 @@ class Stats : AppCompatActivity() {
 
 public data class UserStats(
     var timesPlayed: Int = 0,
-    var averageTries: Float? = 3.0f,
-    var timesGivenUp: Int = 0
+    var averageTries: Float? = 6.0f,
+    var timesGivenUp: Int = 0,
+    var timesWon: Int = 0
 )

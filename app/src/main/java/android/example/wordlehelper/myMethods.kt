@@ -4,21 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
-import android.graphics.Color
-import android.graphics.Typeface
 import android.net.Uri
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.Gravity
-import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import java.io.File
 import java.io.IOException
 
@@ -182,24 +174,12 @@ class myMethods {
             var guessedWord: String
             val guessedWordLetters = mutableListOf<String>()
 
-            val timesUsed = mutableListOf<UsedLetter>()
-
             if (activeLetterIndex == 4) {
                 for (letterPosition in 0 until parent.childCount) {
                     val currentLetter = parent.getChildAt(letterPosition) as TextView
                     guessedWordLetters.add(currentLetter.text.toString().toLowerCase())
-                    //TODO get number of times letter is used
-                    val buffer = UsedLetter(currentLetter.text.toString(), 0)
-                    for (index in 0 until timesUsed.size) {
-                        timesUsed.add(buffer)
-                        timesUsed[letterPosition].timesUsed++
-                    }
                 }
                 guessedWord = guessedWordLetters.joinToString("")
-
-                for (index in 0 until timesUsed.size) {
-                    println("La letra ${timesUsed[index].letter} se ha usado ${timesUsed[index].timesUsed} veces")
-                }
 
 
                 //Comprobar que la palabra introducida es valida
@@ -211,10 +191,19 @@ class myMethods {
                     toast.show()
                 } else {
                     //LA PALABRA ES VALIDA, LET'S GO!!!
-                    guessedWord.lowercase().forEachIndexed() { index, letter ->
 
-                        //VERDE
+                    var alreadyGreen = mutableMapOf<Char, Boolean>()
+                    guessedWord.forEach { letter ->
+                        alreadyGreen.put(letter, false)
+                    }
+
+                    var listOfColors = mutableListOf<String>()
+
+                    guessedWord.lowercase().forEachIndexed() { index, letter ->
+                        /** LETRA VERDE*/
                         if (guessedWord[index] == goalWord[index]) {
+                            listOfColors.add("GREEN")
+                            alreadyGreen[letter] = true
                             val comparedLetter = parent.getChildAt(index) as TextView
                             comparedLetter.setBackgroundColor(resources.getColor(R.color.verde))
 
@@ -236,8 +225,9 @@ class myMethods {
 
                         }
 
-                        //AMARILLO
-                        else if (goalWord.contains(letter)) {
+                        /** LETRA AMARILLA*/
+                        else if (goalWord.contains(letter) && !alreadyGreen[letter]!!) {
+                            listOfColors.add("YELLOW")
                             val comparedLetter = parent.getChildAt(index) as TextView
                             comparedLetter.setBackgroundColor(resources.getColor(R.color.amarillo))
 
@@ -258,8 +248,35 @@ class myMethods {
                             }
                         }
 
-                        //NEGRO
-                        else if (!goalWord.contains(letter)) {
+                        /** LETRA NEGRA*/
+                        else if (!goalWord.contains(letter) || alreadyGreen[letter]!!) {
+                            listOfColors.add("BLACK")
+                            val comparedLetter = parent.getChildAt(index) as TextView
+                            comparedLetter.setBackgroundColor(resources.getColor(R.color.negro))
+
+                            for (row in 0 until keyboardLayout.childCount) {
+                                val keyboardRow =
+                                    keyboardLayout.getChildAt(row) as LinearLayout
+
+                                for (button in 0 until keyboardRow.childCount) {
+                                    val keyboardButton =
+                                        keyboardRow.getChildAt(button) as Button
+                                    if (keyboardButton.text.toString() == comparedLetter.text.toString())
+                                        keyboardButton.setBackgroundColor(
+                                            resources.getColor(
+                                                R.color.negro
+                                            )
+                                        )
+                                }
+                            }
+                        }
+
+                    }
+
+                    /** SEGUNDO BARRIDO PARA CORREGIR COLORES*/
+                    guessedWord.lowercase().forEachIndexed() { index, letter ->
+
+                        if (alreadyGreen[letter]!! && listOfColors[index] == "YELLOW"){
                             val comparedLetter = parent.getChildAt(index) as TextView
                             comparedLetter.setBackgroundColor(resources.getColor(R.color.negro))
 
@@ -290,7 +307,7 @@ class myMethods {
 
                     var indexOfNextLine = parentOfParent.indexOfChild(parent)
                     if (parentOfParent.indexOfChild(parent) < 5) {
-                        /**HAS ACERTADO*/
+                        /**COMPARACION DE PALABRA*/
                         var correcta: Boolean = true
                         for (i in 0 until parent.childCount) {
                             var compare = parent.getChildAt(i) as TextView
@@ -299,23 +316,27 @@ class myMethods {
                             )
                                 correcta = false
                         }
+
+                        /** HAS ACERTADO*/
                         if (correcta == true) {
 
-                            val statsFile = File(context.filesDir,"statsFile.json")
-                            if(statsFile.exists()) {
+                            val statsFile = File(context.filesDir, "statsFile.json")
+                            if (statsFile.exists()) {
                                 var stats = Stats().readStatsFile(statsFile)
                                 stats.averageTries =
                                     (((stats.timesPlayed * stats.averageTries!!) + (parentOfParent.indexOfChild(
                                         parent
                                     ) + 1)) / (stats.timesPlayed + 1))
                                 stats.timesPlayed++
+                                stats.timesWon++
                                 Stats().writeStatsFile(statsFile, stats)
-                            }
-                            else {
+                            } else {
                                 var data: UserStats = UserStats()
                                 data.timesPlayed = 1
-                                data.averageTries = (parentOfParent.indexOfChild(parent) + 1).toFloat()
+                                data.averageTries =
+                                    (parentOfParent.indexOfChild(parent) + 1).toFloat()
                                 data.timesGivenUp = 0
+                                data.timesWon = 1
                                 Stats().writeStatsFile(statsFile, data)
                             }
 
@@ -368,8 +389,8 @@ class myMethods {
                         }
                         if (correcta == false) {
 
-                            val statsFile = File(context.filesDir,"statsFile.json")
-                            if(statsFile.exists()) {
+                            val statsFile = File(context.filesDir, "statsFile.json")
+                            if (statsFile.exists()) {
                                 var stats = Stats().readStatsFile(statsFile)
                                 stats.averageTries =
                                     (((stats.timesPlayed * stats.averageTries!!) + (parentOfParent.indexOfChild(
@@ -377,12 +398,13 @@ class myMethods {
                                     ) + 1)) / (stats.timesPlayed + 1))
                                 stats.timesPlayed++
                                 Stats().writeStatsFile(statsFile, stats)
-                            }
-                            else {
+                            } else {
                                 var data: UserStats = UserStats()
                                 data.timesPlayed = 1
-                                data.averageTries = (parentOfParent.indexOfChild(parent) + 1).toFloat()
+                                data.averageTries =
+                                    (parentOfParent.indexOfChild(parent) + 1).toFloat()
                                 data.timesGivenUp = 0
+                                data.timesWon = 0
                                 Stats().writeStatsFile(statsFile, data)
                             }
 
@@ -426,7 +448,7 @@ class input(val letter: Char?, val color: letterColor) {
     }
 }
 
-class UsedLetter(var letter: String, var timesUsed: Int = 0)
+class UsedLetter(var letter: String, var isGreen: Boolean = false)
 
 
 /** UPLOAD TXT TO ONLINE DATABASE*/
