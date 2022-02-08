@@ -1,11 +1,7 @@
 package android.example.wordlehelper
 
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -14,102 +10,95 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import java.io.File
 import kotlin.random.Random
 
 
 class Game : AppCompatActivity() {
 
-    /**SET UP DATABASE*/
-    val database =
-        Firebase.database("https://unlimitedwords-654c8-default-rtdb.europe-west1.firebasedatabase.app/").reference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-
-        /** LOAD LIST FROM DATABASE*/
-/*
-        var wordList = mutableListOf<String>()
-        var randomIndex: Int = 0
-        var goalWord: String = ""
-
-        database.child("wordList").get().addOnSuccessListener {
-            var word: String = ""
-            it.children.forEach() { currentWord ->
-                word = currentWord.key as String
-                wordList.add(word)
-                randomIndex = Random.nextInt(wordList.size)
-                goalWord = wordList[randomIndex]
-            }
-        }
-*/
         /** LOAD LIST FROM FILE*/
-        val wordList = myMethods().readWordsFromFile(this) as MutableList<String>
+        val wordList = MyMethods().readWordsFromFile(this) as MutableList<String>
+
+        /** SELECT A RANDOM WORD FROM THE LIST AS OBJECTIVE OF THE GAME*/
         val randomIndex = Random.nextInt(wordList.size)
         val goalWord = wordList[randomIndex]
-        println("La palabra objetivo es: $goalWord")
 
-        /**GIVE UP BUTTON*/
+        /**GIVE UP BUTTON BEHAVIOR*/
         val giveUpButton = findViewById<View>(R.id.giveUpBtn)
         giveUpButton.setOnClickListener {
-
-
-            //DIALOG
-            MaterialAlertDialogBuilder(this)
-                .setMessage("Seguro que quieres abandonar?")
-
-                .setNegativeButton("Cancelar") { dialog, which ->
-                }
-
-                .setPositiveButton("Abandonar") { dialog, which ->
-                    val statsFile = File(this.filesDir,"statsFile.json")
-                    if(statsFile.exists()) {
-                        var stats = Stats().readStatsFile(statsFile)
-                        stats.timesPlayed++
-                        stats.timesGivenUp ++
-                        Stats().writeStatsFile(statsFile, stats)
-                    }
-                    else {
-                        var data: UserStats = UserStats()
-                        data.timesPlayed = 1
-                        data.timesGivenUp = 1
-                        data.timesWon = 0
-                        Stats().writeStatsFile(statsFile, data)
-                    }
-
-                    MaterialAlertDialogBuilder(this)
-                        .setMessage("La palabra era ${goalWord.uppercase()}")
-
-                        .setNegativeButton("Salir a Menu Principal") { dialog, which ->
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-                        }
-                        .setPositiveButton("Jugar otra vez") { dialog, which ->
-                            finish();
-                            val intent = Intent(this, Game::class.java)
-                            startActivity(intent)
-                        }
-                        .show()
-                }
-                .show()
+            giveupDialog(goalWord)
         }
 
         /** SET INITIAL FOCUS ON FIRST TEXTVIEW*/
-        val letraActiva = findViewById<View>(R.id.Guess11) as TextView
-        letraActiva.requestFocus()
+        val activeLetterTextView = findViewById<View>(R.id.Guess11) as TextView
+        activeLetterTextView.requestFocus()
 
         /** ADVANCE LETTER ON INPUT*/
-        val activeWord = findViewById<LinearLayout>(R.id.wordsContainerOverlay)
-        for (row in 0 until activeWord.childCount) {
-            val wordRow = activeWord.getChildAt(row) as LinearLayout
-            for (casilla in 0 until wordRow.childCount) {
-                val letter = wordRow.getChildAt(casilla) as TextView
-                letter.addTextChangedListener(object : TextWatcher {
+        moveFocusOnInput()
+
+        /** KEYBOARD BUTTONS LISTENERS */
+        keyboardButtonsListeners(wordList, goalWord)
+    }
+
+
+    /** Shows a pop up dialog when GIVE UP button is pressed*/
+    private fun giveupDialog(goalWord: String) {
+        MaterialAlertDialogBuilder(this)
+            .setMessage("Seguro que quieres abandonar?")
+
+            .setNegativeButton("Cancelar") { _, _ ->
+            }
+
+            .setPositiveButton("Abandonar") { _, _ ->
+                val statsFile = File(this.filesDir, "statsFile.json")
+                if (statsFile.exists()) {
+                    val stats = Stats().readStatsFile(statsFile)
+                    stats.timesPlayed++
+                    stats.timesGivenUp++
+                    Stats().writeStatsFile(statsFile, stats)
+                } else {
+                    val data = UserStats()
+                    data.timesPlayed = 1
+                    data.timesGivenUp = 1
+                    data.timesWon = 0
+                    Stats().writeStatsFile(statsFile, data)
+                }
+
+                MaterialAlertDialogBuilder(this)
+                    .setMessage("La palabra era ${goalWord.uppercase()}")
+
+                    .setNegativeButton("Salir a Menu Principal") { _, _ ->
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .setPositiveButton("Jugar otra vez") { _, _ ->
+                        finish()
+                        val intent = Intent(this, Game::class.java)
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+            .show()
+    }
+
+    /** When a letter is typed, moves the current focus to the next TextView in the same row*/
+    private fun moveFocusOnInput() {
+
+        val guessWordsContainer = findViewById<LinearLayout>(R.id.wordsContainerOverlay)
+        for (row in 0 until guessWordsContainer.childCount) {
+
+            val guessWordRow = guessWordsContainer.getChildAt(row) as LinearLayout
+            for (letter in 0 until guessWordRow.childCount) {
+
+                val letterTextView = guessWordRow.getChildAt(letter) as TextView
+                letterTextView.addTextChangedListener(object : TextWatcher {
+
                     override fun afterTextChanged(s: Editable) {}
+
                     override fun beforeTextChanged(
                         s: CharSequence,
                         start: Int,
@@ -124,9 +113,9 @@ class Game : AppCompatActivity() {
                         before: Int,
                         count: Int
                     ) {
-                        if (letter.text != "") {
-                            val parent = letter.parent as LinearLayout
-                            val letraActivaIndex = parent.indexOfChild(letter)
+                        if (letterTextView.text != "") {
+                            val parent = letterTextView.parent as LinearLayout
+                            val letraActivaIndex = parent.indexOfChild(letterTextView)
                             val nextLetraActiva = parent.getChildAt(letraActivaIndex + 1)
                             if (letraActivaIndex != parent.childCount - 1) nextLetraActiva.requestFocus()
                         }
@@ -134,8 +123,10 @@ class Game : AppCompatActivity() {
                 })
             }
         }
+    }
 
-        /** KEYBOARD BUTTONS LISTENERS */
+    /** Sets up the different listeners for all buttons in the keyboard layout*/
+    private fun keyboardButtonsListeners(wordList: MutableList<String>, goalWord: String) {
         val keyboardLayout = findViewById<LinearLayout>(R.id.keyboardContainerLayout)
 
         for (row in 0 until keyboardLayout.childCount) {
@@ -146,24 +137,13 @@ class Game : AppCompatActivity() {
 
                 keyboardButton.setOnClickListener {
 
-                    //VIBRACION DE TECLA
-                    val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                        v.vibrate(
-                            VibrationEffect.createOneShot(
-                                50,
-                                VibrationEffect.DEFAULT_AMPLITUDE
-                            )
-                        )
+                    MyMethods().vibratePhone(this)
 
-                    //LETTER KEYS
-                    myMethods().letterPress(currentFocus as TextView, keyboardButton)
+                    MyMethods().letterPress(currentFocus as TextView, keyboardButton)
 
-                    //TECLA BORRAR
+                    MyMethods().deletePress(currentFocus as TextView, keyboardButton)
 
-                    myMethods().deletePress(currentFocus as TextView, keyboardButton)
-
-                    //TECLA ENTER
-                    myMethods().enterPress(
+                    MyMethods().enterPress(
                         currentFocus as TextView,
                         keyboardButton,
                         wordList,
@@ -173,8 +153,6 @@ class Game : AppCompatActivity() {
                         this,
                         this
                     )
-
-
                 }
             }
         }
