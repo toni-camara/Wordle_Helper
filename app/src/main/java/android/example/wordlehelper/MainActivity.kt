@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         /**STATS BUTTON*/
         val statsButton = findViewById<Button>(R.id.statsBtn)
         statsButton.setOnClickListener {
-            val intent = Intent(this, Stats::class.java)
+            val intent = Intent(this, StatsActivity::class.java)
             startActivity(intent)
             MyMethods().vibratePhone(this)
         }
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         /**CODE BUTTON*/
         val codeButton = findViewById<Button>(R.id.codeBtn)
         codeButton.setOnClickListener {
-            val intent = Intent(this, Code::class.java)
+            val intent = Intent(this, CodeActivity::class.java)
             startActivity(intent)
             MyMethods().vibratePhone(this)
         }

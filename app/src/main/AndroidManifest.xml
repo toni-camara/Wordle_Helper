@@ -16,10 +16,10 @@
             android:name=".Learn"
             android:exported="false" />
         <activity
-            android:name=".Code"
+            android:name=".CodeActivity"
             android:exported="false" />
         <activity
-            android:name=".Stats"
+            android:name=".StatsActivity"
             android:exported="false" />
         <activity
             android:name=".Game"

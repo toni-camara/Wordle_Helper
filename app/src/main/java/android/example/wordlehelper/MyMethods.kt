@@ -80,7 +80,7 @@ class MyMethods {
 
 
     /** Enter button has been pressed*/
-    fun enterPress(
+    fun onEnterPress(
         currentFocus: TextView,
         keyboardButton: TextView,
         wordList: MutableList<String>,
@@ -216,14 +216,14 @@ class MyMethods {
                 //STATS FILE UPDATE
                 val statsFile = File(context.filesDir, "statsFile.json")
                 if (statsFile.exists()) {
-                    val stats = Stats().readStatsFile(statsFile)
+                    val stats = StatsActivity().readStatsFromFile(statsFile)
                     stats.averageTries =
                         (((stats.timesPlayed * stats.averageTries!!) + (guessWordsLayout.indexOfChild(
                             attempt
                         ) + 1)) / (stats.timesPlayed + 1))
                     stats.timesPlayed++
                     stats.timesWon++
-                    Stats().writeStatsFile(statsFile, stats)
+                    StatsActivity().writeStatsFile(statsFile, stats)
                 } else {
                     val data = UserStats()
                     data.timesPlayed = 1
@@ -231,7 +231,7 @@ class MyMethods {
                         (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
                     data.timesGivenUp = 0
                     data.timesWon = 1
-                    Stats().writeStatsFile(statsFile, data)
+                    StatsActivity().writeStatsFile(statsFile, data)
                 }
             }
 
@@ -264,13 +264,13 @@ class MyMethods {
                 //STATS FILE UPDATE
                 val statsFile = File(context.filesDir, "statsFile.json")
                 if (statsFile.exists()) {
-                    val stats = Stats().readStatsFile(statsFile)
+                    val stats = StatsActivity().readStatsFromFile(statsFile)
                     stats.averageTries =
                         (((stats.timesPlayed * stats.averageTries!!) + (guessWordsLayout.indexOfChild(
                             attempt
                         ) + 1)) / (stats.timesPlayed + 1))
                     stats.timesPlayed++
-                    Stats().writeStatsFile(statsFile, stats)
+                    StatsActivity().writeStatsFile(statsFile, stats)
                 } else {
                     val data = UserStats()
                     data.timesPlayed = 1
@@ -278,7 +278,7 @@ class MyMethods {
                         (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
                     data.timesGivenUp = 0
                     data.timesWon = 0
-                    Stats().writeStatsFile(statsFile, data)
+                    StatsActivity().writeStatsFile(statsFile, data)
                 }
             }
         }

@@ -1,5 +1,6 @@
 package android.example.wordlehelper
 
+import android.app.GameManager
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -9,8 +10,9 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEach
+import androidx.core.view.forEachIndexed
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import java.io.File
 import kotlin.random.Random
 
 
@@ -29,16 +31,14 @@ class Game : AppCompatActivity() {
 
         /**GIVE UP BUTTON BEHAVIOR*/
         val giveUpButton = findViewById<View>(R.id.giveUpBtn)
-        giveUpButton.setOnClickListener {
-            giveupDialog(goalWord)
-        }
+        giveUpButton.setOnClickListener { showGiveUpDialogConfirmation(goalWord) }
 
         /** SET INITIAL FOCUS ON FIRST TEXTVIEW*/
         val activeLetterTextView = findViewById<View>(R.id.Guess11) as TextView
         activeLetterTextView.requestFocus()
 
         /** ADVANCE LETTER ON INPUT*/
-        moveFocusOnInput()
+        initNextFocusListeners()
 
         /** KEYBOARD BUTTONS LISTENERS */
         keyboardButtonsListeners(wordList, goalWord)
@@ -46,78 +46,51 @@ class Game : AppCompatActivity() {
 
 
     /** Shows a pop up dialog when GIVE UP button is pressed*/
-    private fun giveupDialog(goalWord: String) {
+    private fun showGiveUpDialogConfirmation(goalWord: String) {
         MaterialAlertDialogBuilder(this)
             .setMessage("Seguro que quieres abandonar?")
-
-            .setNegativeButton("Cancelar") { _, _ ->
-            }
-
+            .setNegativeButton("Cancelar") { _, _ -> }
             .setPositiveButton("Abandonar") { _, _ ->
-                val statsFile = File(this.filesDir, "statsFile.json")
-                if (statsFile.exists()) {
-                    val stats = Stats().readStatsFile(statsFile)
-                    stats.timesPlayed++
-                    stats.timesGivenUp++
-                    Stats().writeStatsFile(statsFile, stats)
-                } else {
-                    val data = UserStats()
-                    data.timesPlayed = 1
-                    data.timesGivenUp = 1
-                    data.timesWon = 0
-                    Stats().writeStatsFile(statsFile, data)
-                }
+                updateStats()
+                showGiveUpDialog(goalWord)
+            }
+            .show()
+    }
 
-                MaterialAlertDialogBuilder(this)
-                    .setMessage("La palabra era ${goalWord.uppercase()}")
+    private fun updateStats() {
+        val statsManager = StatsManager(this)
+        val userStats = statsManager.getStats() ?: UserStats()
+        userStats.timesPlayed++
+        userStats.timesGivenUp++
+        statsManager.storeStats(userStats)
+    }
 
-                    .setNegativeButton("Salir a Menu Principal") { _, _ ->
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    .setPositiveButton("Jugar otra vez") { _, _ ->
-                        finish()
-                        val intent = Intent(this, Game::class.java)
-                        startActivity(intent)
-                    }
-                    .show()
+    private fun showGiveUpDialog(goalWord: String) {
+        MaterialAlertDialogBuilder(this)
+            .setMessage("La palabra era ${goalWord.uppercase()}")
+            .setNegativeButton("Salir a Menu Principal") { _, _ ->
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            .setPositiveButton("Jugar otra vez") { _, _ ->
+                val intent = Intent(this, Game::class.java)
+                startActivity(intent)
+                finish()
             }
             .show()
     }
 
     /** When a letter is typed, moves the current focus to the next TextView in the same row*/
-    private fun moveFocusOnInput() {
-
+    private fun initNextFocusListeners() {
         val guessWordsContainer = findViewById<LinearLayout>(R.id.wordsContainerOverlay)
-        for (row in 0 until guessWordsContainer.childCount) {
-
-            val guessWordRow = guessWordsContainer.getChildAt(row) as LinearLayout
-            for (letter in 0 until guessWordRow.childCount) {
-
-                val letterTextView = guessWordRow.getChildAt(letter) as TextView
-                letterTextView.addTextChangedListener(object : TextWatcher {
-
-                    override fun afterTextChanged(s: Editable) {}
-
-                    override fun beforeTextChanged(
-                        s: CharSequence,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        s: CharSequence,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        if (letterTextView.text != "") {
-                            val parent = letterTextView.parent as LinearLayout
-                            val letraActivaIndex = parent.indexOfChild(letterTextView)
-                            val nextLetraActiva = parent.getChildAt(letraActivaIndex + 1)
-                            if (letraActivaIndex != parent.childCount - 1) nextLetraActiva.requestFocus()
+        guessWordsContainer.forEach { guessWordRow ->
+            (guessWordRow as LinearLayout).forEachIndexed { index, letterTextView ->
+                (letterTextView as TextView).addTextChangedListener(object : TextWatcherAdapter() {
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                        if (letterTextView.text.isNotEmpty()) {
+                            val nextLetraActiva = guessWordRow.getChildAt(index + 1)
+                            nextLetraActiva?.requestFocus()
                         }
                     }
                 })
@@ -135,28 +108,46 @@ class Game : AppCompatActivity() {
             for (button in 0 until keyboardRow.childCount) {
                 val keyboardButton = keyboardRow.getChildAt(button) as Button
 
-                keyboardButton.setOnClickListener {
-
-                    MyMethods().vibratePhone(this)
-
-                    MyMethods().letterPress(currentFocus as TextView, keyboardButton)
-
-                    MyMethods().deletePress(currentFocus as TextView, keyboardButton)
-
-                    MyMethods().enterPress(
-                        currentFocus as TextView,
-                        keyboardButton,
-                        wordList,
-                        goalWord,
-                        resources,
-                        keyboardLayout,
-                        this,
-                        this
-                    )
+                when (keyboardButton.text) {
+                    "ENTER" -> {
+                        keyboardButton.setOnClickListener {
+                            MyMethods().vibratePhone(this)
+                            MyMethods().onEnterPress(
+                                currentFocus as TextView, keyboardButton, wordList, goalWord, resources, keyboardLayout, this, this
+                            )
+                        }
+                    }
+                    "DEL" -> {
+                        keyboardButton.setOnClickListener {
+                            MyMethods().vibratePhone(this)
+                            MyMethods().deletePress(currentFocus as TextView, keyboardButton)
+                        }
+                    }
+                    else -> {
+                        keyboardButton.setOnClickListener {
+                            MyMethods().vibratePhone(this)
+                            MyMethods().letterPress(currentFocus as TextView, keyboardButton)
+                        }
+                    }
                 }
             }
         }
     }
+
+    private fun onEnterKeyPressed() {
+
+    }
 }
 
+private open class TextWatcherAdapter : TextWatcher {
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+    }
+
+    override fun afterTextChanged(p0: Editable?) {
+    }
+
+}
 
