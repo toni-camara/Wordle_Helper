@@ -189,7 +189,7 @@ class MyMethods {
 
             if (alreadyGreenList[letter]!! && listOfColors[index] == yellow) {
                 val comparedLetter = parent.getChildAt(index) as TextView
-                applyColorToLetter(comparedLetter, black, keyboardLayout)
+                comparedLetter.setBackgroundColor(black)
             }
         }
 
@@ -299,6 +299,8 @@ class MyMethods {
             }
         }
     }
+
+
 
     private fun showEndGameDialog(context: Context, goalWord: String, game: Activity, messageText: String){
         MaterialAlertDialogBuilder(context)
