@@ -3,12 +3,13 @@ package android.example.wordlehelper
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
 import java.io.File
 import java.text.DecimalFormat
 
 class StatsActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val statsManager = StatsManager(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
 
@@ -24,7 +25,7 @@ class StatsActivity : AppCompatActivity() {
             timesGivenUp.text = "0"
             timesWon.text = "0"
         } else {
-            val data = readStatsFromFile(statsFile)
+            val data = statsManager.readStatsFromFile(statsFile)
             val df = DecimalFormat("##.#")
             gamesPlayed.text = data.timesPlayed.toString()
             averageTries.text = df.format(data.averageTries).toString()
@@ -33,16 +34,6 @@ class StatsActivity : AppCompatActivity() {
         }
     }
 
-    fun readStatsFromFile(file: File): UserStats {
-        val string: String = file.readText()
-        return Gson().fromJson(string, UserStats::class.java)
-    }
-
-    fun writeStatsFile(File: File, data: UserStats) {
-        val gson = Gson()
-        val jsonStats: String = gson.toJson(data)
-        File.writeText(jsonStats)
-    }
 }
 
 

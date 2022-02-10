@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
+    private val myMethods = MyMethods()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         playButton.setOnClickListener {
             val intent = Intent(this, Game::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
         /**LEARN BUTTON*/
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         learnButton.setOnClickListener {
             val intent = Intent(this, Learn::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
         /**STATS BUTTON*/
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         statsButton.setOnClickListener {
             val intent = Intent(this, StatsActivity::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
         /**CODE BUTTON*/
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         codeButton.setOnClickListener {
             val intent = Intent(this, CodeActivity::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
     }
