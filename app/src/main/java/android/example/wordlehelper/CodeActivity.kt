@@ -11,7 +11,6 @@ class CodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code)
 
-        //READ CODE BUTTON PRESS
         val readCode = findViewById<Button>(R.id.githubBtn)
         readCode.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)

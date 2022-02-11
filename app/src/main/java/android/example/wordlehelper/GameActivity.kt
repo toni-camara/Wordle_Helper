@@ -23,9 +23,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.IOException
 import kotlin.random.Random
 
-
-@Suppress("DEPRECATION")
-class Game : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
     private val myMethods = MyMethods()
     private lateinit var statsManager: StatsManager
 
@@ -38,10 +36,8 @@ class Game : AppCompatActivity() {
         /** LOAD LIST FROM FILE*/
         val wordList = readWordsFromFile(this) as MutableList<String>
 
-        /** SELECT A RANDOM WORD FROM THE LIST AS OBJECTIVE OF THE GAME*/
-        val randomIndex = Random.nextInt(wordList.size)
-        val goalWord = wordList[randomIndex]
-        println("La palabra es $goalWord")
+        val goalWord = selectRandomWord(wordList)
+        println("La palabra elegida es $goalWord") // Test purposes
 
         /**GIVE UP BUTTON BEHAVIOR*/
         val giveUpButton = findViewById<View>(R.id.giveUpBtn)
@@ -59,6 +55,11 @@ class Game : AppCompatActivity() {
 
         /** KEYBOARD BUTTONS LISTENERS */
         keyboardButtonsListeners(wordList, goalWord, statsManager)
+    }
+
+    private fun selectRandomWord(wordList: MutableList<String>): String{
+        val randomIndex = Random.nextInt(wordList.size)
+        return wordList[randomIndex]
     }
 
     private fun readWordsFromFile(context: Context): List<String> {
@@ -121,7 +122,7 @@ class Game : AppCompatActivity() {
         myMethods.vibratePhone(this)
 
         if (keyboardButton.text != "ENTER" && keyboardButton.text != "DEL") {
-            if (currentFocus.text.toString() == "") {
+            if (currentFocus.text.isEmpty()) {
                 currentFocus.text = keyboardButton.text
             }
         }
@@ -136,11 +137,11 @@ class Game : AppCompatActivity() {
             if (activeLetterIndex != 0) {
                 val nextActiveLetter =
                     parent.getChildAt(activeLetterIndex - 1) as TextView
-                if (activeLetterIndex != 4) {
+                if (activeLetterIndex != LAST_LETTER_INDEX) {
                     nextActiveLetter.text = ""
                     nextActiveLetter.requestFocus()
                 } else {
-                    if (currentFocus.text.toString() != "") {
+                    if (currentFocus.text.toString().isNotEmpty()) {
                         currentFocus.text = ""
                     } else {
                         nextActiveLetter.text = ""
@@ -156,7 +157,7 @@ class Game : AppCompatActivity() {
 
         if (keyboardButton.text.toString() == "ENTER") {
             val activeLetterIndex = (currentFocus?.parent as LinearLayout).indexOfChild(currentFocus)
-            if (activeLetterIndex == 4) {
+            if (activeLetterIndex == LAST_LETTER_INDEX) {
                 val guessedWord = getGuessedLetters(this)
                 if (!wordList.contains(guessedWord)) {
                     showInvalidWordToast()
@@ -175,22 +176,22 @@ class Game : AppCompatActivity() {
             if (haveYouWon(attempt, goalWord)) {
                 val messageText = "Enhorabuena! Has acertado!"
                 showEndGameDialog(this, goalWord, this, messageText)
-                statsManager.victoryStatsUpdate(this, attempt, guessWordsLayout)
+                statsManager.updateStatsVictory(this, attempt, guessWordsLayout)
             } else moveToNextGuess(guessWordsLayout, attempt)
         } else {
-            gameOver(attempt, goalWord, guessWordsLayout, statsManager)
+            gameOver(attempt, goalWord, guessWordsLayout)
         }
     }
 
-    private fun gameOver(attempt: LinearLayout, goalWord: String, guessWordsLayout: LinearLayout, statsManager: StatsManager) {
+    private fun gameOver(attempt: LinearLayout, goalWord: String, guessWordsLayout: LinearLayout) {
         if (!haveYouWon(attempt, goalWord)) {
             val messageText = "Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}"
             showEndGameDialog(this, goalWord, this, messageText)
-            statsManager.defeatStatsUpdate(this, attempt, guessWordsLayout)
+            statsManager.updateStatsDefeat(this, attempt, guessWordsLayout)
         } else {
             val messageText = "Enhorabuena! Has acertado!"
             showEndGameDialog(this, goalWord, this, messageText)
-            statsManager.victoryStatsUpdate(this, attempt, guessWordsLayout)
+            statsManager.updateStatsVictory(this, attempt, guessWordsLayout)
         }
     }
 
@@ -202,9 +203,9 @@ class Game : AppCompatActivity() {
     }
 
     private fun haveYouWon(attempt: LinearLayout, goalWord: String): Boolean {
-        for (i in 0 until attempt.childCount) {
-            val comparedLetter = attempt.getChildAt(i) as TextView
-            if (comparedLetter.text.toString().lowercase() != goalWord[i].toString())
+        attempt.forEachIndexed { index, _ ->
+            val comparedLetter = attempt.getChildAt(index) as TextView
+            if (comparedLetter.text.toString().lowercase() != goalWord[index].toString())
                 return false
         }
         return true
@@ -222,8 +223,8 @@ class Game : AppCompatActivity() {
         val guessedWordLetters = mutableListOf<String>()
         val parent = game.currentFocus?.parent as LinearLayout
         val activeLetterIndex = parent.indexOfChild(game.currentFocus)
-        if (activeLetterIndex == 4) {
-            for (letterPosition in 0 until parent.childCount) {
+        if (activeLetterIndex == LAST_LETTER_INDEX) {
+            parent.forEachIndexed { letterPosition, _ ->
                 val currentLetter = parent.getChildAt(letterPosition) as TextView
                 guessedWordLetters.add(currentLetter.text.toString().lowercase())
             }
@@ -252,15 +253,15 @@ class Game : AppCompatActivity() {
             val comparedLetter = (currentFocus?.parent as LinearLayout).getChildAt(index) as TextView
 
             if (guessedWord[index] == goalWord[index]) {
-                letterColors.add(colorStates.green)
+                letterColors.add(colorStates.correctLetterColor)
                 alreadyGreen[letter] = true
-                applyColorToLetter(comparedLetter, colorStates.green)
+                applyColorToLetter(comparedLetter, colorStates.correctLetterColor)
             } else if (goalWord.contains(letter) && !alreadyGreen[letter]!!) {
-                letterColors.add(colorStates.yellow)
-                applyColorToLetter(comparedLetter, colorStates.yellow)
+                letterColors.add(colorStates.misplacedLetterColor)
+                applyColorToLetter(comparedLetter, colorStates.misplacedLetterColor)
             } else if (!goalWord.contains(letter) || alreadyGreen[letter]!!) {
-                letterColors.add(colorStates.black)
-                applyColorToLetter(comparedLetter, colorStates.black)
+                letterColors.add(colorStates.wrongLetterColor)
+                applyColorToLetter(comparedLetter, colorStates.wrongLetterColor)
             }
         }
     }
@@ -268,9 +269,9 @@ class Game : AppCompatActivity() {
     private fun secondPassColoring(guessedWord: String, alreadyGreen: MutableMap<Char, Boolean>, letterColors: MutableList<Int>) {
         val colorStates = ColorStates(resources)
         guessedWord.lowercase().forEachIndexed { index, letter ->
-            if (alreadyGreen[letter]!! && letterColors[index] == colorStates.yellow) {
+            if (alreadyGreen[letter]!! && letterColors[index] == colorStates.misplacedLetterColor) {
                 val comparedLetter = (currentFocus?.parent as LinearLayout).getChildAt(index) as TextView
-                comparedLetter.setBackgroundColor(colorStates.black)
+                comparedLetter.setBackgroundColor(colorStates.wrongLetterColor)
             }
         }
     }
@@ -309,39 +310,39 @@ class Game : AppCompatActivity() {
             .show()
     }
 
-    private fun giveUpConfirmDialog(goalWord: String, context: Context, game: Game, statsManager: StatsManager) {
+    private fun giveUpConfirmDialog(goalWord: String, context: Context, gameActivity: GameActivity, statsManager: StatsManager) {
         MaterialAlertDialogBuilder(context)
             .setMessage("Seguro que quieres abandonar?")
             .setNegativeButton("Cancelar") { _, _ -> }
             .setPositiveButton("Abandonar") { _, _ ->
-                statsManager.onGiveUpUpdateStats()
-                showGiveUpDialog(goalWord, context, game)
+                statsManager.updateStatsGiveUp()
+                showGiveUpDialog(goalWord, context, gameActivity)
             }
             .show()
     }
 
-    private fun showGiveUpDialog(goalWord: String, context: Context, game: Game) {
+    private fun showGiveUpDialog(goalWord: String, context: Context, gameActivity: GameActivity) {
         MaterialAlertDialogBuilder(context)
             .setMessage("La palabra era ${goalWord.uppercase()}")
             .setNegativeButton("Salir a Menu Principal") { _, _ ->
-                val intent = Intent(context, MainActivity::class.java)
-                game.startActivity(intent)
-                game.finish()
+                gameActivity.finish()
             }
             .setPositiveButton("Jugar otra vez") { _, _ ->
-                val intent = Intent(context, Game::class.java)
-                game.startActivity(intent)
-                game.finish()
+                val intent = Intent(context, GameActivity::class.java)
+                gameActivity.startActivity(intent)
+                gameActivity.finish()
             }
             .show()
     }
 
 }
 
+private const val LAST_LETTER_INDEX = 4
+
 private class ColorStates(resources: Resources) {
-    val green = resources.getColor(R.color.verde)
-    val yellow = resources.getColor(R.color.amarillo)
-    val black = resources.getColor(R.color.negro)
+    val correctLetterColor = resources.getColor(R.color.correctLetterColor)
+    val misplacedLetterColor = resources.getColor(R.color.misplacedLetterColor)
+    val wrongLetterColor = resources.getColor(R.color.wrongLetterColor)
 }
 
 private open class TextWatcherAdapter : TextWatcher {

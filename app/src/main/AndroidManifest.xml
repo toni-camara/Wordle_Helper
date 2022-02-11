@@ -22,7 +22,7 @@
             android:name=".StatsActivity"
             android:exported="false" />
         <activity
-            android:name=".Game"
+            android:name=".GameActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -37,7 +37,7 @@
         <Button
             android:id="@+id/statsBtn"
             style="@style/OrangeButton"
-            android:text="Estadísticas"
+            android:text="@string/stats_button_text"
             app:icon="@drawable/baseline_emoji_events_black_24" />
 
         <Button

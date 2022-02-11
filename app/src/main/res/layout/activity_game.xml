@@ -26,16 +26,12 @@
             android:textSize="30sp" />
     </RelativeLayout>
 
-    //WORD CONTAINER
-
     <LinearLayout
         android:id="@+id/wordsContainerOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
-
-        //FIRST WORD
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -316,9 +312,6 @@
         app:strokeWidth="1dp"
         android:text="@string/giveUp" />
 
-
-    // KEYBOARD LAYOUT
-
     <LinearLayout
         android:id="@+id/keyboardContainerLayout"
         android:layout_width="wrap_content"
@@ -328,8 +321,6 @@
         android:background="@color/background"
         android:orientation="vertical"
         android:paddingVertical="10dp">
-
-        //FIRST ROW
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -388,7 +379,6 @@
                 android:text="P" />
         </LinearLayout>
 
-        //SECOND ROW
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -446,8 +436,6 @@
                 style="@style/KeyboardLetter"
                 android:text="Ñ" />
         </LinearLayout>
-
-        //THIRD ROW
 
         <LinearLayout
             android:layout_width="wrap_content"

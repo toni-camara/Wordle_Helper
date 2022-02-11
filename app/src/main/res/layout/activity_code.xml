@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-light"
-        android:text="ABOUT THE CODE"
+        android:text="@string/code_activity_header"
         android:textColor="@color/white"
         android:textSize="30sp" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/githubBtn"
             style="@style/GreenButton"
             android:layout_marginTop="50dp"
-            android:text="GITHUB"
+            android:text="@string/github_button_text"
             app:icon="@drawable/link_icon" />
 
 

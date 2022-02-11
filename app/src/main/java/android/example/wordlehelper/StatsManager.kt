@@ -33,19 +33,19 @@ class StatsManager(context: Context) {
         file.writeText(userStatsJson)
     }
 
-     fun onGiveUpUpdateStats() {
+     fun updateStatsGiveUp() {
         val userStats = getStats() ?: UserStats()
         userStats.timesPlayed++
         userStats.timesGivenUp++
         storeStats(userStats)
     }
 
-    fun defeatStatsUpdate(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout){
+    fun updateStatsDefeat(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout){
         val statsFile = File(context.filesDir, "statsFile.json")
         if (statsFile.exists()) {
             val stats = readStatsFromFile(statsFile)
             stats.averageTries =
-                (((stats.timesPlayed * stats.averageTries!!) + (guessWordsLayout.indexOfChild(
+                (((stats.timesPlayed * stats.averageTries) + (guessWordsLayout.indexOfChild(
                     attempt
                 ) + 1)) / (stats.timesPlayed + 1))
             stats.timesPlayed++
@@ -61,12 +61,12 @@ class StatsManager(context: Context) {
         }
     }
 
-    fun victoryStatsUpdate(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout){
+    fun updateStatsVictory(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout){
         val statsFile = File(context.filesDir, "statsFile.json")
         if (statsFile.exists()) {
             val stats = readStatsFromFile(statsFile)
             stats.averageTries =
-                (((stats.timesPlayed * stats.averageTries!!) + (guessWordsLayout.indexOfChild(
+                (((stats.timesPlayed * stats.averageTries) + (guessWordsLayout.indexOfChild(
                     attempt
                 ) + 1)) / (stats.timesPlayed + 1))
             stats.timesPlayed++
@@ -88,7 +88,7 @@ private const val USER_STATS_FILE_NAME = "statsFile.json"
 
 data class UserStats(
     var timesPlayed: Int = 0,
-    var averageTries: Float? = 6.0f,
+    var averageTries: Float = 6.0f,
     var timesGivenUp: Int = 0,
     var timesWon: Int = 0
 )

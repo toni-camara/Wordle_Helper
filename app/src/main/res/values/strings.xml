@@ -7,6 +7,15 @@
     <string name="code_button">Leer el Codigo</string>
     <string name="game_header">WORDLE UNLIMITED</string>
     <string name="giveUp">ABANDONAR</string>
+    <string name="code_activity_header">ABOUT THE CODE</string>
+    <string name="github_button_text">GITHUB</string>
+    <string name="learn_activity_header">CÓMO JUGAR</string>
+    <string name="stats_button_text">Estadísticas</string>
+    <string name="stats_activity_header">ESTADISTICAS</string>
+    <string name="played_games">Partidas Jugadas</string>
+    <string name="games_won">Victorias</string>
+    <string name="average_tries">Media de Intentos</string>
+    <string name="times_given_up">Abandonos</string>
 
 
 </resources>

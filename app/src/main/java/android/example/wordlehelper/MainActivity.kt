@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         /**PLAY BUTTON*/
         val playButton = findViewById<Button>(R.id.playBtn)
         playButton.setOnClickListener {
-            val intent = Intent(this, Game::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             myMethods.vibratePhone(this)
         }
