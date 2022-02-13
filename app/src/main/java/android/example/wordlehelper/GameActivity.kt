@@ -54,7 +54,7 @@ class GameActivity : AppCompatActivity() {
         initNextFocusListeners()
 
         /** KEYBOARD BUTTONS LISTENERS */
-        keyboardButtonsListeners(wordList, goalWord, statsManager)
+        keyboardButtonsListeners(wordList, goalWord)
     }
 
     private fun selectRandomWord(wordList: MutableList<String>): String{
@@ -98,14 +98,14 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun keyboardButtonsListeners(wordList: MutableList<String>, goalWord: String, statsManager: StatsManager) {
+    private fun keyboardButtonsListeners(wordList: MutableList<String>, goalWord: String) {
         val keyboardLayout = findViewById<LinearLayout>(R.id.keyboardContainerLayout)
         keyboardLayout.forEach { keyboardRow ->
             (keyboardRow as LinearLayout).forEach { keyboardButton ->
                 keyboardButton as Button
                 when (keyboardButton.text) {
                     "ENTER" -> {
-                        keyboardButton.setOnClickListener { onEnterPress(keyboardButton, wordList, goalWord, statsManager) }
+                        keyboardButton.setOnClickListener { onEnterPress(keyboardButton, wordList, goalWord) }
                     }
                     "DEL" -> {
                         keyboardButton.setOnClickListener { onDeletePress(currentFocus as TextView, keyboardButton) }
@@ -152,7 +152,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun onEnterPress(keyboardButton: TextView, wordList: MutableList<String>, goalWord: String, statsManager: StatsManager) {
+    private fun onEnterPress(keyboardButton: TextView, wordList: MutableList<String>, goalWord: String) {
         myMethods.vibratePhone(this)
 
         if (keyboardButton.text.toString() == "ENTER") {
@@ -162,13 +162,13 @@ class GameActivity : AppCompatActivity() {
                 if (!wordList.contains(guessedWord)) {
                     showInvalidWordToast()
                 } else {
-                    onValidWord(guessedWord, goalWord, statsManager)
+                    onValidWord(guessedWord, goalWord)
                 }
             }
         }
     }
 
-    private fun onValidWord(guessedWord: String, goalWord: String, statsManager: StatsManager) {
+    private fun onValidWord(guessedWord: String, goalWord: String) {
         letterColorChange(guessedWord, goalWord)
         val attempt = currentFocus?.parent as LinearLayout
         val guessWordsLayout = attempt.parent as LinearLayout
@@ -225,7 +225,7 @@ class GameActivity : AppCompatActivity() {
         val parent = game.currentFocus?.parent as LinearLayout
         val activeLetterIndex = parent.indexOfChild(game.currentFocus)
         if (activeLetterIndex == LAST_LETTER_INDEX) {
-            parent.forEachIndexed { letterPosition, currentLetter ->
+            parent.forEachIndexed { _, currentLetter ->
                 guessedWordLetters.add((currentLetter as TextView).text.toString().lowercase())
             }
         }
