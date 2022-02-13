@@ -175,7 +175,7 @@ class GameActivity : AppCompatActivity() {
         if (guessWordsLayout.indexOfChild(attempt) < 5) {
             if (haveYouWon(attempt, goalWord)) {
                 val messageText = "Enhorabuena! Has acertado!"
-                showEndGameDialog(this, goalWord, this, messageText)
+                showEndGameDialog(goalWord, messageText)
                 gameOver(attempt, goalWord, guessWordsLayout)
             } else moveToNextGuess(guessWordsLayout, attempt)
         } else {
@@ -185,15 +185,16 @@ class GameActivity : AppCompatActivity() {
 
     private fun gameOver(attempt: LinearLayout, goalWord: String, guessWordsLayout: LinearLayout) {
         var victory = false
+        val tries = guessWordsLayout.indexOfChild(attempt) + 1
         if (!haveYouWon(attempt, goalWord)) {
             val messageText = "Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}"
-            showEndGameDialog(this, goalWord, this, messageText)
-            statsManager.updateStatsGameFinished(this, attempt, guessWordsLayout, victory)
+            showEndGameDialog(goalWord, messageText)
+            statsManager.updateStatsGameFinished(tries, victory)
         } else {
             val messageText = "Enhorabuena! Has acertado!"
-            showEndGameDialog(this, goalWord, this, messageText)
+            showEndGameDialog(goalWord, messageText)
             victory = true
-            statsManager.updateStatsGameFinished(this, attempt, guessWordsLayout, victory)
+            statsManager.updateStatsGameFinished(tries, victory)
         }
     }
 
@@ -288,8 +289,8 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun showEndGameDialog(context: Context, goalWord: String, game: Activity, messageText: String) {
-        MaterialAlertDialogBuilder(context)
+    private fun showEndGameDialog(goalWord: String, messageText: String) {
+        MaterialAlertDialogBuilder(this)
             .setMessage(messageText)
             .setPositiveButton("Atrás") { _, _ ->
             }
@@ -299,13 +300,13 @@ class GameActivity : AppCompatActivity() {
                     Intent.ACTION_VIEW,
                     Uri.parse("https://dle.rae.es/${goalWord}")
                 )
-                context.startActivity(website)
+                this.startActivity(website)
             }
             .setNeutralButton("Nueva Partida") { _, _ ->
                 // Respond to positive button press
-                game.finish()
-                val intent = Intent(game, game::class.java)
-                game.startActivity(intent)
+                this.finish()
+                val intent = Intent(this, GameActivity::class.java)
+                this.startActivity(intent)
             }
             .show()
 

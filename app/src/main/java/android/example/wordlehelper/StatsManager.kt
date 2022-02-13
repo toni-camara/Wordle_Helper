@@ -13,12 +13,6 @@ class StatsManager(context: Context) {
         return Gson().fromJson(string, UserStats::class.java)
     }
 
-    private fun writeStatsFile(File: File, data: UserStats) {
-        val gson = Gson()
-        val jsonStats: String = gson.toJson(data)
-        File.writeText(jsonStats)
-    }
-
     private fun getStats(): UserStats? {
         if (!file.exists()) {
             return null
@@ -40,26 +34,15 @@ class StatsManager(context: Context) {
         storeStats(userStats)
     }
 
-    fun updateStatsGameFinished(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout, victory: Boolean) {
-        val statsFile = File(context.filesDir, "statsFile.json")
-        if (statsFile.exists()) {
-            val stats = readStatsFromFile(statsFile)
-            stats.averageTries =
-                (((stats.timesPlayed * stats.averageTries) + (guessWordsLayout.indexOfChild(attempt) + 1)) / (stats.timesPlayed + 1))
-            stats.timesPlayed++
-            if (victory) stats.timesWon++
-            writeStatsFile(statsFile, stats)
-        } else {
-            val timesWon: Int
-            if (!victory) {
-                timesWon = 0
-            } else timesWon = 1
-            val averageTries = (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
-            val data = UserStats(1, averageTries, 0, timesWon)
-            writeStatsFile(statsFile, data)
+    fun updateStatsGameFinished(tries: Int, isVictory: Boolean) {
+        val userStats = getStats() ?: UserStats()
+        if (isVictory) {
+            userStats.timesWon++
         }
+        userStats.averageTries = (userStats.timesPlayed * userStats.averageTries) + tries / (userStats.timesPlayed + 1)
+        userStats.timesPlayed++
+        storeStats(userStats)
     }
-
 
 }
 
