@@ -50,7 +50,7 @@ class StatsManager(context: Context) {
             if (victory) stats.timesWon++
             writeStatsFile(statsFile, stats)
         } else {
-            var timesWon: Int
+            val timesWon: Int
             if (!victory) {
                 timesWon = 0
             } else timesWon = 1
