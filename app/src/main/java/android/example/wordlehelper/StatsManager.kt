@@ -33,51 +33,34 @@ class StatsManager(context: Context) {
         file.writeText(userStatsJson)
     }
 
-     fun updateStatsGiveUp() {
+    fun updateStatsGiveUp() {
         val userStats = getStats() ?: UserStats()
         userStats.timesPlayed++
         userStats.timesGivenUp++
         storeStats(userStats)
     }
 
-    fun updateStatsDefeat(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout){
+    fun updateStatsGameFinished(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout, victory: Boolean) {
         val statsFile = File(context.filesDir, "statsFile.json")
         if (statsFile.exists()) {
             val stats = readStatsFromFile(statsFile)
             stats.averageTries =
-                (((stats.timesPlayed * stats.averageTries) + (guessWordsLayout.indexOfChild(
-                    attempt
-                ) + 1)) / (stats.timesPlayed + 1))
+                (((stats.timesPlayed * stats.averageTries) + (guessWordsLayout.indexOfChild(attempt) + 1)) / (stats.timesPlayed + 1))
             stats.timesPlayed++
+            if (victory) stats.timesWon++
             writeStatsFile(statsFile, stats)
         } else {
+            var timesWon: Int
+            if (!victory) {
+                timesWon = 0
+            } else timesWon = 1
             val averageTries = (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
-            val data = UserStats(1, averageTries , 0, 0)
+            val data = UserStats(1, averageTries, 0, timesWon)
             writeStatsFile(statsFile, data)
         }
     }
 
-    fun updateStatsVictory(context: Context, attempt: LinearLayout, guessWordsLayout: LinearLayout){
-        val statsFile = File(context.filesDir, "statsFile.json")
-        if (statsFile.exists()) {
-            val stats = readStatsFromFile(statsFile)
-            stats.averageTries =
-                (((stats.timesPlayed * stats.averageTries) + (guessWordsLayout.indexOfChild(
-                    attempt
-                ) + 1)) / (stats.timesPlayed + 1))
-            stats.timesPlayed++
-            stats.timesWon++
-            writeStatsFile(statsFile, stats)
-        } else {
-            val data = UserStats()
-            data.timesPlayed = 1
-            data.averageTries =
-                (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
-            data.timesGivenUp = 0
-            data.timesWon = 1
-            writeStatsFile(statsFile, data)
-        }
-    }
+
 }
 
 private const val USER_STATS_FILE_NAME = "statsFile.json"

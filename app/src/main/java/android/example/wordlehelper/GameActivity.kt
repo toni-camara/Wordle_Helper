@@ -176,7 +176,7 @@ class GameActivity : AppCompatActivity() {
             if (haveYouWon(attempt, goalWord)) {
                 val messageText = "Enhorabuena! Has acertado!"
                 showEndGameDialog(this, goalWord, this, messageText)
-                statsManager.updateStatsVictory(this, attempt, guessWordsLayout)
+                gameOver(attempt, goalWord, guessWordsLayout)
             } else moveToNextGuess(guessWordsLayout, attempt)
         } else {
             gameOver(attempt, goalWord, guessWordsLayout)
@@ -184,14 +184,16 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun gameOver(attempt: LinearLayout, goalWord: String, guessWordsLayout: LinearLayout) {
+        var victory = false
         if (!haveYouWon(attempt, goalWord)) {
             val messageText = "Lástima, fallaste!\nLa palabra era ${goalWord.uppercase()}"
             showEndGameDialog(this, goalWord, this, messageText)
-            statsManager.updateStatsDefeat(this, attempt, guessWordsLayout)
+            statsManager.updateStatsGameFinished(this, attempt, guessWordsLayout, victory)
         } else {
             val messageText = "Enhorabuena! Has acertado!"
             showEndGameDialog(this, goalWord, this, messageText)
-            statsManager.updateStatsVictory(this, attempt, guessWordsLayout)
+            victory = true
+            statsManager.updateStatsGameFinished(this, attempt, guessWordsLayout, victory)
         }
     }
 
@@ -306,6 +308,7 @@ class GameActivity : AppCompatActivity() {
                 game.startActivity(intent)
             }
             .show()
+
     }
 
     private fun giveUpConfirmDialog(goalWord: String, context: Context, gameActivity: GameActivity, statsManager: StatsManager) {
