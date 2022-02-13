@@ -51,12 +51,8 @@ class StatsManager(context: Context) {
             stats.timesPlayed++
             writeStatsFile(statsFile, stats)
         } else {
-            val data = UserStats()
-            data.timesPlayed = 1
-            data.averageTries =
-                (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
-            data.timesGivenUp = 0
-            data.timesWon = 0
+            val averageTries = (guessWordsLayout.indexOfChild(attempt) + 1).toFloat()
+            val data = UserStats(1, averageTries , 0, 0)
             writeStatsFile(statsFile, data)
         }
     }

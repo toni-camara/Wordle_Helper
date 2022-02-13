@@ -203,9 +203,8 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun haveYouWon(attempt: LinearLayout, goalWord: String): Boolean {
-        attempt.forEachIndexed { index, _ ->
-            val comparedLetter = attempt.getChildAt(index) as TextView
-            if (comparedLetter.text.toString().lowercase() != goalWord[index].toString())
+        attempt.forEachIndexed { index, comparedLetter ->
+            if ((comparedLetter as TextView).text.toString().lowercase() != goalWord[index].toString())
                 return false
         }
         return true
@@ -224,9 +223,8 @@ class GameActivity : AppCompatActivity() {
         val parent = game.currentFocus?.parent as LinearLayout
         val activeLetterIndex = parent.indexOfChild(game.currentFocus)
         if (activeLetterIndex == LAST_LETTER_INDEX) {
-            parent.forEachIndexed { letterPosition, _ ->
-                val currentLetter = parent.getChildAt(letterPosition) as TextView
-                guessedWordLetters.add(currentLetter.text.toString().lowercase())
+            parent.forEachIndexed { letterPosition, currentLetter ->
+                guessedWordLetters.add((currentLetter as TextView).text.toString().lowercase())
             }
         }
         return guessedWordLetters.joinToString("")
@@ -340,9 +338,9 @@ class GameActivity : AppCompatActivity() {
 private const val LAST_LETTER_INDEX = 4
 
 private class ColorStates(resources: Resources) {
-    val correctLetterColor = resources.getColor(R.color.correctLetterColor)
-    val misplacedLetterColor = resources.getColor(R.color.misplacedLetterColor)
-    val wrongLetterColor = resources.getColor(R.color.wrongLetterColor)
+    val correctLetterColor = resources.getColor(R.color.green_letter)
+    val misplacedLetterColor = resources.getColor(R.color.yellow_letter)
+    val wrongLetterColor = resources.getColor(R.color.black_letter)
 }
 
 private open class TextWatcherAdapter : TextWatcher {
