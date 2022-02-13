@@ -225,7 +225,7 @@ class GameActivity : AppCompatActivity() {
         val parent = game.currentFocus?.parent as LinearLayout
         val activeLetterIndex = parent.indexOfChild(game.currentFocus)
         if (activeLetterIndex == LAST_LETTER_INDEX) {
-            parent.forEachIndexed { _, currentLetter ->
+            parent.forEach { currentLetter ->
                 guessedWordLetters.add((currentLetter as TextView).text.toString().lowercase())
             }
         }
