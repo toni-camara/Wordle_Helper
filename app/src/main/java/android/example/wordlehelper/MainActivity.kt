@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
+    private val myMethods = MyMethods()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -16,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         /**PLAY BUTTON*/
         val playButton = findViewById<Button>(R.id.playBtn)
         playButton.setOnClickListener {
-            val intent = Intent(this, Game::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
         /**LEARN BUTTON*/
@@ -26,23 +27,23 @@ class MainActivity : AppCompatActivity() {
         learnButton.setOnClickListener {
             val intent = Intent(this, Learn::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
         /**STATS BUTTON*/
         val statsButton = findViewById<Button>(R.id.statsBtn)
         statsButton.setOnClickListener {
-            val intent = Intent(this, Stats::class.java)
+            val intent = Intent(this, StatsActivity::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
         /**CODE BUTTON*/
         val codeButton = findViewById<Button>(R.id.codeBtn)
         codeButton.setOnClickListener {
-            val intent = Intent(this, Code::class.java)
+            val intent = Intent(this, CodeActivity::class.java)
             startActivity(intent)
-            MyMethods().vibratePhone(this)
+            myMethods.vibratePhone(this)
         }
 
     }

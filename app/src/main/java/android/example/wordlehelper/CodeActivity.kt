@@ -6,12 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class Code : AppCompatActivity() {
+class CodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code)
 
-        //READ CODE BUTTON PRESS
         val readCode = findViewById<Button>(R.id.githubBtn)
         readCode.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
