@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.example.wordlehelper">
+    package="com.tonicamara.wordleunlimited">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -13,19 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WordleHelper">
         <activity
-            android:name=".Learn"
+            android:name="com.tonicamara.wordleunlimited.Learn"
             android:exported="false" />
         <activity
-            android:name=".CodeActivity"
+            android:name="com.tonicamara.wordleunlimited.CodeActivity"
             android:exported="false" />
         <activity
-            android:name=".StatsActivity"
+            android:name="com.tonicamara.wordleunlimited.StatsActivity"
             android:exported="false" />
         <activity
-            android:name=".GameActivity"
+            android:name="com.tonicamara.wordleunlimited.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.tonicamara.wordleunlimited.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

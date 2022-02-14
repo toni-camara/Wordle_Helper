@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".Learn">
+    tools:context="com.tonicamara.wordleunlimited.Learn">
 
     <TextView
         android:id="@+id/mainHeader"
