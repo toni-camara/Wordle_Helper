@@ -1,4 +1,4 @@
-Wordle Unlimited Privacy Policy
+Palabras sin Límite - Privacy Policy
 
 ---------------------------------------------------------------------------------------------------------
 
