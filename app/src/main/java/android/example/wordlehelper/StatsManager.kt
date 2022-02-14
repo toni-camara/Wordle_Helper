@@ -1,7 +1,6 @@
 package android.example.wordlehelper
 
 import android.content.Context
-import android.widget.LinearLayout
 import com.google.gson.Gson
 import java.io.File
 
