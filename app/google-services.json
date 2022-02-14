@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "483800922256",
+    "firebase_url": "https://unlimitedwords-654c8-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "unlimitedwords-654c8",
     "storage_bucket": "unlimitedwords-654c8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:483800922256:android:e17cd6334baca543e74015",
+        "mobilesdk_app_id": "1:483800922256:android:95fbd615bb3fdd82e74015",
         "android_client_info": {
-          "package_name": "android.example.wordlehelper"
+          "package_name": "com.tonicamara.wordleunlimited"
         }
       },
       "oauth_client": [
