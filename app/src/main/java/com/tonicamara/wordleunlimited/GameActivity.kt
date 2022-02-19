@@ -303,7 +303,13 @@ class GameActivity : AppCompatActivity() {
                     Intent.ACTION_VIEW,
                     Uri.parse("https://dle.rae.es/${goalWord}")
                 )
+                val intent = Intent(this, GameActivity::class.java)
+                this.startActivity(intent)
+                this.finish()
+
                 this.startActivity(website)
+
+
             }
             .setNeutralButton("Nueva Partida") { _, _ ->
                 // Respond to positive button press
@@ -343,6 +349,11 @@ class GameActivity : AppCompatActivity() {
                 // Respond to positive button press
                 myMethods.vibratePhone(this)
                 val website = Intent(Intent.ACTION_VIEW, Uri.parse("https://dle.rae.es/${goalWord}"))
+
+                val intent = Intent(this, GameActivity::class.java)
+                this.startActivity(intent)
+                this.finish()
+
                 this.startActivity(website)
             }
             .setPositiveButton("Jugar otra vez") { _, _ ->
