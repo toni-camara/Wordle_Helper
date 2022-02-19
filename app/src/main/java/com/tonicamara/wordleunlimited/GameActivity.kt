@@ -309,6 +309,7 @@ class GameActivity : AppCompatActivity() {
                 this.startActivity(intent)
                 this.finish()
             }
+            .setCancelable(false)
             .show()
 
     }
@@ -321,6 +322,7 @@ class GameActivity : AppCompatActivity() {
                 statsManager.updateStatsGiveUp()
                 showGiveUpDialog(goalWord, context, gameActivity)
             }
+            .setCancelable(false)
             .show()
     }
 
@@ -335,6 +337,7 @@ class GameActivity : AppCompatActivity() {
                 gameActivity.startActivity(intent)
                 gameActivity.finish()
             }
+            .setCancelable(false)
             .show()
     }
 
