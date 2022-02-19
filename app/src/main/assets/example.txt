@@ -155,6 +155,7 @@ arpas
 arpia
 arpon
 arroz
+artes
 aruba
 arzon
 asado
@@ -225,7 +226,6 @@ bache
 bacon
 badel
 baden
-baena
 bafle
 bahia
 baile
@@ -990,6 +990,7 @@ fugas
 fugaz
 fular
 fumar
+funda
 fungi
 furia
 furor
@@ -1535,6 +1536,7 @@ miope
 mirar
 mirlo
 miron
+mirra
 misas
 misil
 misma
@@ -2500,6 +2502,7 @@ unico
 unido
 union
 untar
+urbes
 urdir
 urgir
 urnas
