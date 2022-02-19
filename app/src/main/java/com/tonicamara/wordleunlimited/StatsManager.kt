@@ -21,7 +21,7 @@ class StatsManager(context: Context) {
         return Gson().fromJson(userStatsString, UserStats::class.java)
     }
 
-    private fun storeStats(data: UserStats) {
+    fun storeStats(data: UserStats) {
         val userStatsJson: String = Gson().toJson(data)
         file.writeText(userStatsJson)
     }
@@ -51,7 +51,7 @@ private const val USER_STATS_FILE_NAME = "statsFile.json"
 
 data class UserStats(
     var timesPlayed: Int = 0,
-    var averageTries: Float = 6.0f,
+    var averageTries: Float = 0.0f,
     var timesGivenUp: Int = 0,
     var timesWon: Int = 0
 )

@@ -132,6 +132,22 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginVertical="30dp"
+            android:layout_height="1dp"
+            android:background="@color/green" />
+
+        <Button
+            android:id="@+id/resetStatsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REINICIAR ESTADISTICAS"
+            app:strokeColor="@color/orange"
+            app:strokeWidth="1dp"
+            style="@style/OrangeButton"
+            />
+
 
 
 
