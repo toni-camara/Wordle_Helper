@@ -853,7 +853,6 @@ etica
 etico
 etnia
 euros
-exila
 exito
 exodo
 extra
@@ -864,7 +863,6 @@ facil
 facto
 fados
 faena
-faina
 fajar
 fajas
 fajin
