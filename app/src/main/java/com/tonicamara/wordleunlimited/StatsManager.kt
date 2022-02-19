@@ -28,6 +28,7 @@ class StatsManager(context: Context) {
 
     fun updateStatsGiveUp() {
         val userStats = getStats() ?: UserStats()
+        userStats.averageTries = ((userStats.timesPlayed * userStats.averageTries) + 6) / (userStats.timesPlayed + 1)
         userStats.timesPlayed++
         userStats.timesGivenUp++
         storeStats(userStats)
