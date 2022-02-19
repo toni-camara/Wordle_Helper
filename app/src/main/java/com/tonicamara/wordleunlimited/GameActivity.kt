@@ -65,7 +65,7 @@ class GameActivity : AppCompatActivity() {
     private fun readWordsFromFile(context: Context): List<String> {
         var string = ""
         try {
-            val inputStream = context.assets.open("example.txt")
+            val inputStream = context.assets.open("wordList.txt")
             val size: Int = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer).toString()
@@ -293,10 +293,12 @@ class GameActivity : AppCompatActivity() {
         MaterialAlertDialogBuilder(this)
             .setMessage(messageText)
             .setPositiveButton("Salir al Menu Principal") { _, _ ->
+                myMethods.vibratePhone(this)
                 this.finish()
             }
             .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { _, _ ->
                 // Respond to positive button press
+                myMethods.vibratePhone(this)
                 val website = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse("https://dle.rae.es/${goalWord}")
@@ -305,6 +307,7 @@ class GameActivity : AppCompatActivity() {
             }
             .setNeutralButton("Nueva Partida") { _, _ ->
                 // Respond to positive button press
+                myMethods.vibratePhone(this)
                 val intent = Intent(this, GameActivity::class.java)
                 this.startActivity(intent)
                 this.finish()
@@ -317,8 +320,11 @@ class GameActivity : AppCompatActivity() {
     private fun giveUpConfirmDialog(goalWord: String, context: Context, gameActivity: GameActivity, statsManager: StatsManager) {
         MaterialAlertDialogBuilder(context)
             .setMessage("Seguro que quieres abandonar?")
-            .setNegativeButton("Cancelar") { _, _ -> }
+            .setNegativeButton("Cancelar") { _, _ ->
+                myMethods.vibratePhone(this)
+            }
             .setPositiveButton("Abandonar") { _, _ ->
+                myMethods.vibratePhone(this)
                 statsManager.updateStatsGiveUp()
                 showGiveUpDialog(goalWord, context, gameActivity)
             }
@@ -330,14 +336,17 @@ class GameActivity : AppCompatActivity() {
         MaterialAlertDialogBuilder(context)
             .setMessage("La palabra era ${goalWord.uppercase()}")
             .setNeutralButton("Salir al Menu Principal") { _, _ ->
+                myMethods.vibratePhone(this)
                 gameActivity.finish()
             }
             .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { _, _ ->
                 // Respond to positive button press
+                myMethods.vibratePhone(this)
                 val website = Intent(Intent.ACTION_VIEW, Uri.parse("https://dle.rae.es/${goalWord}"))
                 this.startActivity(website)
             }
             .setPositiveButton("Jugar otra vez") { _, _ ->
+                myMethods.vibratePhone(this)
                 val intent = Intent(context, GameActivity::class.java)
                 gameActivity.startActivity(intent)
                 gameActivity.finish()
