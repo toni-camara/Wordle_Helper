@@ -329,8 +329,13 @@ class GameActivity : AppCompatActivity() {
     private fun showGiveUpDialog(goalWord: String, context: Context, gameActivity: GameActivity) {
         MaterialAlertDialogBuilder(context)
             .setMessage("La palabra era ${goalWord.uppercase()}")
-            .setNegativeButton("Salir al Menu Principal") { _, _ ->
+            .setNeutralButton("Salir al Menu Principal") { _, _ ->
                 gameActivity.finish()
+            }
+            .setNegativeButton("Definición RAE de ${goalWord.uppercase()}") { _, _ ->
+                // Respond to positive button press
+                val website = Intent(Intent.ACTION_VIEW, Uri.parse("https://dle.rae.es/${goalWord}"))
+                this.startActivity(website)
             }
             .setPositiveButton("Jugar otra vez") { _, _ ->
                 val intent = Intent(context, GameActivity::class.java)
